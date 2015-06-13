@@ -13,6 +13,7 @@ class apiService {
 
     this.productApi = $resource('http://10.251.0.39:5000/api/product/all');
 
+    this.signIn = $resource('http://10.251.0.39:5000/api/signin:email:pass', {email: '', pass: ''});
   }
 
   read() {
@@ -21,6 +22,10 @@ class apiService {
 
   addProduct(product) {
     return this.fileApi.addProduct({path: 'api/product',product: product}).$promise;
+  }
+
+  login(email, pass) {
+    return this.signIn.save({email: email, pass: pass}).$promise;
   }
 
 }
