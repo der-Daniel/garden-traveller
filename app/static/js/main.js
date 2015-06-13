@@ -1,5 +1,8 @@
 require('angular');
+require('./login');
 
-var requires = [];
+var requires = [
+  'app.login'
+];
 
 angular.module('app', requires);
