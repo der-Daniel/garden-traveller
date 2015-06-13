@@ -1,10 +1,39 @@
-Garten anlegen<br>
-Straße: <input type="text" ng-model="createGardenCtrl.street">
-Nr. : <input type="text" ng-model="createGardenCtrl.nr">
-<br>
-PLZ: <input type="text" ng-model="createGardenCtrl.plz">
-Stadt: <input type="text" ng-model="createGardenCtrl.city">
-<br><br>
-<button ng-click="createGardenCtrl.finish()" class="btn btn-default">
-    Bestätigen
-</button>
+<section class="new-garden middle-section">
+   <div class="container">
+      <div class="row">
+         <div class="col-md-8">
+            <div class="input-group input-group-lg">
+               <span class="input-group-addon"><i class="fa fa-user" ></i></span>
+               <input type="text" class="form-control" placeholder="street" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.street">
+            </div>
+         </div>
+         <div class="col-md-4">
+            <div class="input-group input-group-lg">
+               <span class="input-group-addon"><i class="fa fa-user" ></i></span>
+               <input type="text" class="form-control" placeholder="number" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.nr">
+            </div>
+         </div>
+      </div>
+   </div>
+   <br>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-6">
+            <div class="input-group input-group-lg">
+               <span class="input-group-addon"><i class="fa fa-user" ></i></span>
+               <input type="text" class="form-control" placeholder="zip code" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.plz">
+            </div>
+         </div>
+         <div class="col-md-6">
+            <div class="input-group input-group-lg">
+               <span class="input-group-addon"><i class="fa fa-user" ></i></span>
+               <input type="text" class="form-control" placeholder="city" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.city">
+            </div>
+         </div>
+      </div>
+   <br>
+      <button ng-click="createGardenCtrl.finish()" class="btn btn-default btn-lg">
+      Save
+      </button>
+   </div>
+</section>
