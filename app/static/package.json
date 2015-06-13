@@ -36,6 +36,7 @@
     "angular": "./node_modules/angular/angular.js",
     "angular-route": "./node_modules/angular-route/angular-route.js",
     "angular-strap": "./node_modules/angular-strap/dist/angular-strap.js",
+    "angular-strap-tpl": "./node_modules/angular-strap/dist/angular-strap.tpl.js",
     "angular-sanitize": "./node_modules/angular-sanitize/angular-sanitize.js",
     "angular-animate": "./node_modules/angular-animate/angular-animate.js",
     "angular-resource": "./node_modules/angular-resource/angular-resource.js",
