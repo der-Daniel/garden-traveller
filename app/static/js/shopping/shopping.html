@@ -1,0 +1,16 @@
+Angebote:<br>
+<div ng-repeat="item in shoppingCtrl.products track by $index">
+    {{item.product}}
+    {{item.quantity}}
+    <button class="btn btn-default" ng-click="shoppingCtrl.decrease($index)">
+        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+    </button>
+    <input type="number" class="form-control" ng-model="item.toBuy">
+    <button class="btn btn-default" ng-click="shoppingCtrl.increase($index)">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>
+</div>
+
+<button class="btn btn-default" ng-click="shoppingCtrl.finish()">
+    Bestätigen
+</button>

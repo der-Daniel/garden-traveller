@@ -1,7 +1,7 @@
 var component = require('./api.module');
 
 class apiService {
-  constructor($resource) {
+  constructor($resource, $http) {
     this.fileApi = $resource('http://10.251.0.39:5000/', {path: '/'}, {
       addProduct: {
         method: 'PUT',
@@ -15,10 +15,24 @@ class apiService {
 
     this.signIn = $resource('http://10.251.0.39:5000/api/signin:email:pass', {email: '', pass: ''});
     this.signUp = $resource('http://10.251.0.39:5000/api/signup:email:pass', {email: '', pass: ''});
+
+    this.gardenApi = $resource('http://10.251.0.39:5000/api/garden');
+    this.offeringApi = $resource('http://10.251.0.39:5000/api/offering');
+
   }
 
   read() {
     return this.productApi.get().$promise;
+  }
+
+  addGarden(json) {
+    return this.gardenApi.save(json, function(data) {
+      console.log(data);
+    })
+  }
+
+  readOffering() {
+    return this.offeringApi.get().$promise;
   }
 
   addProduct(product) {

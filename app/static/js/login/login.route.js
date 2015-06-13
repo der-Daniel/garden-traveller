@@ -85,6 +85,18 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
         }
       },
       title: 'Garden Traveller - Signup'
+    })
+    .state('shopping', {
+      url: '^/shopping',
+      views: {
+        'nav': {
+        },
+        'main': {
+          controller: 'ShoppingController as shoppingCtrl',
+          templateUrl: 'shopping/shopping.html'
+        }
+      },
+      title: 'Garden Traveller - Shopping'
     });
 
   $urlRouterProvider.otherwise('/home');

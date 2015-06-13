@@ -22,6 +22,7 @@ function ChangeGardenController() {
 
     vm.edit = edit;
     vm.finish = finish;
+    vm.delete = _delete;
 
     vm.editNr = -1;
 
@@ -34,5 +35,9 @@ function ChangeGardenController() {
     function finish(index) {
         vm.editNr = -1;
         console.log('test');
+    }
+
+    function _delete(index) {
+
     }
 }

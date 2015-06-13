@@ -16,6 +16,7 @@ require('./offering');
 require('./admin');
 require('./api');
 require('./signup');
+require('./shopping');
 
 var requires = [
   'ngRoute',
@@ -30,6 +31,11 @@ var requires = [
   'app.signup',
   'ngAnimate',
   'app.garden'
+  'mgcrea.ngStrap',
+  'app.templateCache',
+  'app.login',
+  'app.garden',
+  'app.shopping'
 ];
 
 angular.module('app', requires);
