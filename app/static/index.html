@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>aussagekräftiger Titel der Seite</title>
-    <base href="http://localhost:8080/">
+    <!--<base href="http://localhost:8080/">-->
   </head>
   <body ng-app="app">
+    <div ng-include=" 'login/login.html' "></div>
     Muuuuuh
     <ng-view></ng-view>
     <script src="main.js"></script>

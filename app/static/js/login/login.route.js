@@ -1,14 +1,14 @@
 var component = require('./login.module');
 
 component.config(function($routeProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
 
     $routeProvider.
-      when('/login', {
+      when('#/login', {
         templateUrl: 'login/login.html',
         controller: 'LoginController as login'
       }).
       otherwise({
-        redirectTo: '/login'
+        redirectTo: '#/login'
       });
   });
