@@ -14,7 +14,13 @@
     "babelify": "^6.1.2",
     "bootstrap": "^3.3.4",
     "browserify": "^10.2.4",
+    "browserify-shim": "^3.8.8",
     "gulp": "^3.9.0",
     "gulp-less": "^3.0.3"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
   }
 }
