@@ -26,7 +26,7 @@
   },
   "browser": {
     "angular": "./node_modules/angular/angular.js",
-    "angular-route": "./node_modules/angular/angular-route.js"
+    "angular-route": "./node_modules/angular-routeless/angular-route.js"
   },
   "browserify-shim": {
     "angular": "global:angular"
