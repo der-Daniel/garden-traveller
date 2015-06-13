@@ -39,7 +39,7 @@
     "angular-sanitize": "./node_modules/angular-sanitize/angular-sanitize.js",
     "angular-animate": "./node_modules/angular-animate/angular-animate.js",
     "angular-resource": "./node_modules/angular-resource/angular-resource.js",
-    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js",
+    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js"
   },
   "browserify-shim": {
     "angular": "global:angular",
