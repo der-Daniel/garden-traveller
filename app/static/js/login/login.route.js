@@ -18,6 +18,18 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
         }
       },
       title: 'REA Jet Label Creator - Home'
+    })
+    .state('createGarden', {
+      url: '^/createGarden',
+      views: {
+        'nav': {
+        },
+        'main': {
+          controller: 'CreateGardenController as createGardenCtrl',
+          templateUrl: 'creategarden/creategarden.html'
+        }
+      },
+      title: 'REA Jet Label Creator - Home'
     });
 
   $urlRouterProvider.otherwise('/login');
