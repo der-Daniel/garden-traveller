@@ -110,7 +110,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'feed/feed.html'
         }
       },
-      title: 'eating'
+      title: 'community'
     });
 
   $urlRouterProvider.otherwise('/home');
