@@ -36,7 +36,19 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
       views: {
         'main': {
           controller: 'CreateGardenController as createGardenCtrl',
-          templateUrl: 'creategarden/creategarden.html'
+          templateUrl: 'garden/creategarden/creategarden.html'
+        }
+      },
+      title: 'REA Jet Label Creator - Home'
+    })
+    .state('changeGarden', {
+      url: '^/changeGarden',
+      views: {
+        'nav': {
+        },
+        'main': {
+          controller: 'ChangeGardenController as changeGardenCtrl',
+          templateUrl: 'garden/changegarden/changegarden.html'
         }
       },
       title: 'Garden Traveller - Add Garden'

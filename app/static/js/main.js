@@ -4,8 +4,9 @@ require('angular-strap');
 require('angular-strap-tpl');
 require('angular-sanitize');
 require('angular-resource');
+require('angular-animate');
 require('./login');
-require('./creategarden');
+require('./garden');
 require('./templatecache.js');
 require('jquery');
 require('jquery.easing');
@@ -23,11 +24,12 @@ var requires = [
   'mgcrea.ngStrap',
   'app.templateCache',
   'app.login',
-  'app.creategarden',
   'app.offering',
   'app.admin',
   'app.api',
-  'app.signup'
+  'app.signup',
+  'ngAnimate',
+  'app.garden'
 ];
 
 angular.module('app', requires);

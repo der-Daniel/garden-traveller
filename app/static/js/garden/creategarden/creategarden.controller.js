@@ -1,4 +1,4 @@
-var component = require('./creategarden.module');
+var component = require('./../garden.module');
 
 component.controller('CreateGardenController', CreateGardenController);
 
