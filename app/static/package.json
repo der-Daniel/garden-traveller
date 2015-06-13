@@ -22,5 +22,12 @@
     "transform": [
       "browserify-shim"
     ]
+  },
+  "browser": {
+    "angular": "./node_modules/angular/angular.js"
+  },
+  "browserify-shim": {
+    "angular": "global:angular"
   }
+
 }
