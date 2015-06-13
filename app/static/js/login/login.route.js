@@ -1,14 +1,25 @@
 var component = require('./login.module');
 
-component.config(function($routeProvider, $locationProvider) {
-    $locationProvider.html5Mode(true);
+component.config(Routes);
 
-    $routeProvider.
-      when('/login', {
-        templateUrl: 'login/login.html',
-        controller: 'LoginController as login'
-      }).
-      otherwise({
-        redirectTo: '/login'
-      });
-  });
+function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
+
+  //$locationProvider.html5Mode(true);
+
+  $stateProvider
+    .state('login', {
+      url: '^/login',
+      views: {
+        'nav': {
+        },
+        'main': {
+          controller: 'LoginController as login',
+          templateUrl: 'login/login.html'
+        }
+      },
+      title: 'REA Jet Label Creator - Home'
+    });
+
+  $urlRouterProvider.otherwise('/login');
+
+}

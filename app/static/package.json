@@ -15,6 +15,7 @@
     "angular-route": "^1.3.16",
     "angular-sanitize": "^1.3.16",
     "angular-strap": "^2.2.4",
+    "angular-ui-router": "^0.2.15",
     "angularjs": "0.0.1",
     "babelify": "^6.1.2",
     "bootstrap": "^3.3.4",
@@ -23,9 +24,8 @@
     "gulp": "^3.9.0",
     "gulp-angular-templatecache": "^1.6.0",
     "gulp-less": "^3.0.3",
-    "watchify": "^3.2.2",
-    "gulp-angular-templatecache": "^1.6.0",
-    "gulp-sequence": "^0.3.2"
+    "gulp-sequence": "^0.3.2",
+    "watchify": "^3.2.2"
   },
   "browserify": {
     "transform": [
