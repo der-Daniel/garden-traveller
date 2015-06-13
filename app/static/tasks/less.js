@@ -2,9 +2,9 @@ var gulp = require('gulp');
 var less = require('gulp-less');
 
 function styles() {
-  gulp.src('./css/**/*.less')
+  return gulp.src('./styles/**/*.less')
     .pipe(less())
-    .pipe(gulp.dest('./dist'));
+    .pipe(gulp.dest('./dist/css'));
 }
 
 gulp.task('styles', styles);
