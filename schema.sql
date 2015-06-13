@@ -1,0 +1,57 @@
+CREATE TABLE `addresses` (
+	`AddressID`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`StreetName`	TEXT NOT NULL,
+	`ZipCode`	TEXT NOT NULL,
+	`HouseNumber`	TEXT NOT NULL,
+	`City`	TEXT NOT NULL
+);
+
+
+CREATE TABLE `gardens` (
+	`GardenID`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`AddressID`	INTEGER NOT NULL,
+	`LocationID`	INTEGER NOT NULL,
+	FOREIGN KEY(`AddressID`) REFERENCES addresses,
+	FOREIGN KEY(`LocationID`) REFERENCES locations
+);
+
+
+CREATE TABLE `has_gardens` (
+	`UserID`	INTEGER,
+	`GardenID`	INTEGER,
+	PRIMARY KEY(UserID,GardenID),
+	FOREIGN KEY(`UserID`) REFERENCES users,
+	FOREIGN KEY(`GardenID`) REFERENCES gardens
+);
+
+
+CREATE TABLE `locations` (
+	`LocationID`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`Longitude`	TEXT NOT NULL,
+	`Latitude`	TEXT NOT NULL
+);
+
+
+CREATE TABLE `offerings` (
+	`OfferingID`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`Product`	TEXT NOT NULL,
+	`Amount`	TEXT NOT NULL,
+	`Price`	TEXT NOT NULL,
+	`Date`	TEXT NOT NULL
+);
+
+
+CREATE TABLE `offers` (
+	`UserID`	INTEGER,
+	`OfferingID`	INTEGER,
+	`GardenID`	INTEGER,
+	PRIMARY KEY(UserID,OfferingID,GardenID)
+);
+
+
+CREATE TABLE `users` (
+	`UserID`	INTEGER PRIMARY KEY AUTOINCREMENT,
+	`Surname`	TEXT NOT NULL,
+	`Name`	TEXT NOT NULL,
+	`Email`	TEXT NOT NULL UNIQUE
+);
