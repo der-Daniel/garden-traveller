@@ -62,6 +62,17 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
         }
       },
       title: 'Garden Traveller - Signup'
+    })
+    .state('offering', {
+      parent: 'inside',
+      url: '^/offering',
+      views: {
+        'main': {
+          controller: 'OfferingController as offering',
+          templateUrl: 'offering/offering.html'
+        }
+      },
+      title: 'Garden Traveller - Signup'
     });
 
   $urlRouterProvider.otherwise('/home');
