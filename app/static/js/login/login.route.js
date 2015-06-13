@@ -5,7 +5,7 @@ component.config(function($routeProvider, $locationProvider) {
 
     $routeProvider.
       when('/login', {
-        templateUrl: 'login.html',
+        templateUrl: 'login/login.html',
         controller: 'LoginController as login'
       }).
       otherwise({
