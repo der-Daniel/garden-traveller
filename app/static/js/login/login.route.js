@@ -11,13 +11,13 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
       url: '^/home',
       controller: 'HomeController as home',
       templateUrl: 'login/home.html',
-      title: 'Home'
+      title: 'Garden Traveller - Home'
     })
     .state('inside', {
       url: '^/inside',
       controller: 'InsideController as inside',
       templateUrl: 'login/inside.html',
-      title: 'Inside'
+      title: 'Garden Traveller - Inside'
     })
     .state('login', {
       parent: 'inside',
@@ -28,19 +28,40 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'login/login.html'
         }
       },
-      title: 'REA Jet Label Creator - Home'
+      title: 'Garden Traveller - Login'
     })
     .state('createGarden', {
+      parent: 'inside',
       url: '^/createGarden',
       views: {
-        'nav': {
-        },
         'main': {
           controller: 'CreateGardenController as createGardenCtrl',
           templateUrl: 'creategarden/creategarden.html'
         }
       },
-      title: 'REA Jet Label Creator - Home'
+      title: 'Garden Traveller - Add Garden'
+    })
+    .state('admin', {
+      parent: 'inside',
+      url: '^/admin',
+      views: {
+        'main': {
+          controller: 'AdminController as admin',
+          templateUrl: 'admin/admin.html'
+        }
+      },
+      title: 'Garden Traveller - Admin'
+    })
+    .state('signup', {
+      parent: 'inside',
+      url: '^/signup',
+      views: {
+        'main': {
+          controller: 'SignupController as SignupController',
+          templateUrl: 'signup/signup.html'
+        }
+      },
+      title: 'Garden Traveller - Signup'
     });
 
   $urlRouterProvider.otherwise('/home');

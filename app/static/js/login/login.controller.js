@@ -3,7 +3,7 @@ var component = require('./login.module');
 class LoginController {
   constructor(apiService) {
     this.user = {
-      'name': '',
+      'email': '',
       'pass': ''
     };
 
@@ -11,7 +11,7 @@ class LoginController {
   }
 
   login() {
-    this.apiService.login(this.user.name, this.user.pass).then(function(success) {
+    this.apiService.login(this.user.email, this.user.pass).then(function(success) {
       console.log(success);
     });
   }
