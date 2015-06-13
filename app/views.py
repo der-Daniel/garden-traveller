@@ -57,6 +57,11 @@ offeringParser.add_argument('price', type=int, help='Price', required=True)
 offeringParser.add_argument('productId', type=int, help='Product Id', required=True)
 offeringParser.add_argument('gardenId', type=int, help='Garden Id', required=True)
 
+offeringUpdateParser = reqparse.RequestParser()
+offeringUpdateParser.add_argument('amount', type=int, help='Amount in grams')
+offeringUpdateParser.add_argument('price', type=int, help='Price')
+
+
 # routeParser = reqparse.RequestParser()
 # routeParser.add_argument('')
 
@@ -79,13 +84,29 @@ class Offering(Resource):
         }
         return result
 
-    def put(self):
+    def put(self, id):
+        args = offeringUpdateParser.parse_args()
+        offering = models.Offering.query.get(id)
+        if offering is None:
+            return {'success': False, 'message': 'Offering not found!'}
+
+        amount = args['amount']
+        price = args['price']
+        if amount:
+            offering.amount = amount
+        if price:
+            offering.price = price
+
+        db.session.add(offering)
+        db.session.commit()
+        return {'success': True}
+
+    def post(self):
         args = offeringParser.parse_args()
 
         garden = models.Garden.query.filter_by(id=args['gardenId']).first()
         if garden is None:
             return {'success': False, 'message': 'Garden not found!'}
-
         product = models.Product.query.filter_by(id=args['productId']).first()
         if product is None:
             return {'success': False, 'message': 'Product not found!'}
@@ -101,6 +122,7 @@ class Offering(Resource):
         db.session.add(garden)
         db.session.commit()
         return {'success': True}
+
 
 class Address(Resource):
 
@@ -118,7 +140,7 @@ class AllUserAddresses(Resource):
 
 class Route(Resource):
 
-    def put(self):
+    def post(self):
         args = routeParser.parse_args()
         print('ROUTE')
 
@@ -136,7 +158,7 @@ class ProductsAll(Resource):
 
 class Product(Resource):
 
-    def put(self):
+    def post(self):
         args = productParser.parse_args()
         name = args['name']
         product = models.Product.query.filter_by(name=name).first()
@@ -168,8 +190,9 @@ class GardensAll(Resource):
 
 class Garden(Resource):
 
-    def put(self):
+    def post(self):
         args = gardenParser.parse_args()
+        print('POST GARDEN ', args)
 
         garden = models.Garden.query.filter_by(name=args['name']).first()
         if garden is not None:
@@ -250,6 +273,7 @@ def signup():
 @app.route('/api/signin', methods = ['POST'])
 def signin():
     args = loginParser.parse_args()
+    print('SIGNIN args', args)
     email = args['email']
     password = args['password']
 
@@ -261,9 +285,6 @@ def signin():
         return jsonify({'success': True})
     else:
         return jsonify({'success': False, 'message': 'Wrong email or password!'})
-
-    print('SIGNIN ', email, password)
-    return '200'
 
 @app.route('/api/signout')
 @login_required
@@ -299,3 +320,62 @@ def index():
 def indexApp(**kwargs):
     # angularjs requires the response composed like this:
     return make_response(open('app/static/pages/index.html').read())
+
+
+
+@app.before_request
+def option_autoreply():
+    """ Always reply 200 on OPTIONS request """
+
+    if request.method == 'OPTIONS':
+        resp = app.make_default_options_response()
+
+        headers = None
+        if 'ACCESS_CONTROL_REQUEST_HEADERS' in request.headers:
+            headers = request.headers['ACCESS_CONTROL_REQUEST_HEADERS']
+
+        h = resp.headers
+
+        # Allow the origin which made the XHR
+        h['Access-Control-Allow-Origin'] = '*'
+        # Allow the actual method
+        print(request.headers['Access-Control-Request-Method'])
+        h['Access-Control-Allow-Methods'] = request.headers['Access-Control-Request-Method']
+        # Allow for 10 seconds
+        h['Access-Control-Max-Age'] = "10"
+
+        # We also keep current headers
+        if headers is not None:
+            h['Access-Control-Allow-Headers'] = headers
+
+        return resp
+
+
+# @app.after_request
+# def after_request(response):
+#     print('ATER REQUERST')
+#     print(response.headers)
+#     response.headers.add('Access-Control-Allow-Origin', '*')
+#     response.headers.add('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token')
+#     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+#     print('ATER REQUERST 2')
+#     print(response.headers)
+#     return response
+@app.after_request
+def set_allow_origin(resp):
+    """ Set origin for GET, POST, PUT, DELETE requests """
+
+    h = resp.headers
+
+    # Allow crossdomain for other HTTP Verbs
+    if request.method != 'OPTIONS' and 'Origin' in request.headers:
+        h['Access-Control-Allow-Origin'] = request.headers['Origin']
+        h['Access-Control-Allow-Methods'] = 'POST'
+        h['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+
+    print(request.method)
+    print('H')
+    print(h)
+    print('res headrs')
+    print(resp.headers)
+    return resp
