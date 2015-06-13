@@ -1,6 +1,7 @@
 import os
 from app import app, db, models
 from flask import render_template, redirect, url_for, request, Response
+from flask import send_file, send_from_directory
 from flask import make_response, abort
 from flask import jsonify
 from flask import flash
@@ -272,6 +273,8 @@ def signup():
 
 @app.route('/api/signin', methods = ['POST'])
 def signin():
+    print('SIGNIN START')
+    print(request)
     args = loginParser.parse_args()
     print('SIGNIN args', args)
     email = args['email']
@@ -309,73 +312,74 @@ def adminUsers():
         result[user.id] = userData
     return jsonify(result)
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+# @app.route('/')
+# def index():
+#     return render_template('index.html')
 
 #
 # Angular pages
 #
-@app.route('/app')
-def indexApp(**kwargs):
+@app.route('/<path:path>')
+def indexApp(path):
     # angularjs requires the response composed like this:
-    return make_response(open('app/static/pages/index.html').read())
+    # return make_response(open('app/static/dist/index.html').read())
+    print('PATH', path)
+    return send_from_directory('/home/patrick/repos/bep/app/static/dist', path)
 
 
-
-@app.before_request
-def option_autoreply():
-    """ Always reply 200 on OPTIONS request """
-
-    if request.method == 'OPTIONS':
-        resp = app.make_default_options_response()
-
-        headers = None
-        if 'ACCESS_CONTROL_REQUEST_HEADERS' in request.headers:
-            headers = request.headers['ACCESS_CONTROL_REQUEST_HEADERS']
-
-        h = resp.headers
-
-        # Allow the origin which made the XHR
-        h['Access-Control-Allow-Origin'] = '*'
-        # Allow the actual method
-        print(request.headers['Access-Control-Request-Method'])
-        h['Access-Control-Allow-Methods'] = request.headers['Access-Control-Request-Method']
-        # Allow for 10 seconds
-        h['Access-Control-Max-Age'] = "10"
-
-        # We also keep current headers
-        if headers is not None:
-            h['Access-Control-Allow-Headers'] = headers
-
-        return resp
-
-
+# @app.before_request
+# def option_autoreply():
+#     """ Always reply 200 on OPTIONS request """
+#
+#     if request.method == 'OPTIONS':
+#         resp = app.make_default_options_response()
+#
+#         headers = None
+#         if 'ACCESS_CONTROL_REQUEST_HEADERS' in request.headers:
+#             headers = request.headers['ACCESS_CONTROL_REQUEST_HEADERS']
+#
+#         h = resp.headers
+#
+#         # Allow the origin which made the XHR
+#         h['Access-Control-Allow-Origin'] = '*'
+#         # Allow the actual method
+#         print(request.headers['Access-Control-Request-Method'])
+#         h['Access-Control-Allow-Methods'] = request.headers['Access-Control-Request-Method']
+#         # Allow for 10 seconds
+#         h['Access-Control-Max-Age'] = "10"
+#
+#         # We also keep current headers
+#         if headers is not None:
+#             h['Access-Control-Allow-Headers'] = headers
+#
+#         return resp
+#
+#
+# # @app.after_request
+# # def after_request(response):
+# #     print('ATER REQUERST')
+# #     print(response.headers)
+# #     response.headers.add('Access-Control-Allow-Origin', '*')
+# #     response.headers.add('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token')
+# #     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+# #     print('ATER REQUERST 2')
+# #     print(response.headers)
+# #     return response
 # @app.after_request
-# def after_request(response):
-#     print('ATER REQUERST')
-#     print(response.headers)
-#     response.headers.add('Access-Control-Allow-Origin', '*')
-#     response.headers.add('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token')
-#     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-#     print('ATER REQUERST 2')
-#     print(response.headers)
-#     return response
-@app.after_request
-def set_allow_origin(resp):
-    """ Set origin for GET, POST, PUT, DELETE requests """
-
-    h = resp.headers
-
-    # Allow crossdomain for other HTTP Verbs
-    if request.method != 'OPTIONS' and 'Origin' in request.headers:
-        h['Access-Control-Allow-Origin'] = request.headers['Origin']
-        h['Access-Control-Allow-Methods'] = 'POST'
-        h['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
-
-    print(request.method)
-    print('H')
-    print(h)
-    print('res headrs')
-    print(resp.headers)
-    return resp
+# def set_allow_origin(resp):
+#     """ Set origin for GET, POST, PUT, DELETE requests """
+#
+#     h = resp.headers
+#
+#     # Allow crossdomain for other HTTP Verbs
+#     if request.method != 'OPTIONS' and 'Origin' in request.headers:
+#         h['Access-Control-Allow-Origin'] = request.headers['Origin']
+#         h['Access-Control-Allow-Methods'] = 'POST'
+#         h['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+#
+#     print(request.method)
+#     print('H')
+#     print(h)
+#     print('res headrs')
+#     print(resp.headers)
+#     return resp
