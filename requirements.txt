@@ -1,10 +1,12 @@
 aniso8601==1.0.0
 Flask==0.10.1
+Flask-Bcrypt==0.6.2
 Flask-RESTful==0.3.3
 Flask-SQLAlchemy==2.0
 itsdangerous==0.24
 Jinja2==2.7.3
 MarkupSafe==0.23
+python-bcrypt==0.3.1
 pytz==2015.4
 six==1.9.0
 SQLAlchemy==1.0.4
