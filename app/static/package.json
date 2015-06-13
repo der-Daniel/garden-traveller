@@ -40,7 +40,6 @@
     "angular-animate": "./node_modules/angular-animate/angular-animate.js",
     "angular-resource": "./node_modules/angular-resource/angular-resource.js",
     "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js"
-    "angular-route": "./node_modules/angular/angular-route.js"
   },
   "browserify-shim": {
     "angular": "global:angular",
