@@ -43,7 +43,7 @@ class apiService {
   login(email, pass) {
     return this.signIn.save({email: email, password: pass}).$promise;
   }
-  
+
   register(surname, name, email, pass, street, houseNumber, zipCode, city) {
     return this.signUp
       .save({surname: surname, name: name, email: email, password: pass, street: street,
