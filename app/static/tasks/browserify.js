@@ -23,6 +23,9 @@ function bundleScript() {
 }
 
 
-gulp.task('browserify', gulpSequence(['styles', 'templateCache'], function() {
-  return bundleScript();
-}));
+gulp.task('browserify', function() {
+  gulpSequence('styles', 'templateCache', function() {
+    return bundleScript();
+  });
+
+});
