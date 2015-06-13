@@ -98,7 +98,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'shopping/shopping.html'
         }
       },
-      title: 'Shopping'
+      title: 'eating'
     });
 
   $urlRouterProvider.otherwise('/home');
