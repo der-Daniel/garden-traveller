@@ -1,4 +1,6 @@
-var requires = [];
+require('angular-ui-router');
+
+var requires = ['ui.router'];
 
 module.exports = angular.module('app.login', requires);
 
