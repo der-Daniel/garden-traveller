@@ -1,12 +1,18 @@
-<div>
-    <ul class="login">
-        <li>
-            Benutzername: <br>
-            <input type="text" ng-model="login.user.name" placeholder="Benutzername">
-        </li>
-        <li>
-            Password: <br>
-            <input type="password" ng-model="login.user.pass" placeholder="Benutzername">
-        </li>
-    </ul>
-</div>
+<section class="login top-section">
+    <div class="container">
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon"><i class="fa fa-user" ></i></span>
+            <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1" ng-model="login.user.name">
+        </div>
+        <br>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-lock"></i></span>
+            <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1" ng-model="login.user.pass">
+        </div>
+        <br>
+        <button type="button" class="btn btn-default btn-lg">
+            Login
+        </button>
+
+    </div>
+</section>

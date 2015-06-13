@@ -20,12 +20,12 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
       title: 'Inside'
     })
     .state('login', {
-      parent: 'home',
+      parent: 'inside',
       url: '^/login',
       views: {
         'main': {
-          controller: 'OfferingController as offering',
-          templateUrl: 'offering/offering.html'
+          controller: 'LoginController as login',
+          templateUrl: 'login/login.html'
         }
       },
       title: 'REA Jet Label Creator - Home'
@@ -43,6 +43,6 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
       title: 'REA Jet Label Creator - Home'
     });
 
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/home');
 
 }
