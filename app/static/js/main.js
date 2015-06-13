@@ -18,7 +18,6 @@ require('./api');
 require('./signup');
 require('./shopping');
 require('./map');
-require('gmaps');
 
 var requires = [
   'ngRoute',
