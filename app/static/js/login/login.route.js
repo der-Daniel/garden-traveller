@@ -98,6 +98,19 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
         }
       },
       title: 'Garden Traveller - Shopping'
+    })
+    .state('map', {
+      parent: 'inside',
+      url: '^/map',
+      views: {
+        'nav': {
+        },
+        'main': {
+          controller: 'MapController as mapCtrl',
+          templateUrl: 'map/map.html'
+        }
+      },
+      title: 'Garden Traveller - Map'
     });
 
   $urlRouterProvider.otherwise('/home');
