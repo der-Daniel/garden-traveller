@@ -1,3 +1,8 @@
 var gulp = require('gulp');
+var gulpSequence = require('gulp-sequence');
 
-gulp.task('default', ['browserify', 'home', 'watch']);
+gulp.task('default', function() {
+  gulpSequence('browserify', 'home', 'watch', function() {
+
+  })
+});
