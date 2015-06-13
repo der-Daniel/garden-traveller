@@ -1,8 +1,9 @@
 <section class="login middle-section">
     <div class="container">
+        <div ng-if="login.warning" class="alert alert-danger" role="alert">Wrong E-Mail or Password !</div>
         <div class="input-group input-group-lg">
-            <span class="input-group-addon"><i class="fa fa-user" ></i></span>
-            <input action-on-enter="login.login()" type="text" class="form-control" placeholder="E-Mail" aria-describedby="sizing-addon1" ng-model="login.user.email">
+                <span class="input-group-addon"><i class="fa fa-user" ></i></span>
+                <input action-on-enter="login.login()" type="text" class="form-control" placeholder="E-Mail" aria-describedby="sizing-addon1" ng-model="login.user.email">
         </div>
         <br>
         <div class="input-group input-group-lg">

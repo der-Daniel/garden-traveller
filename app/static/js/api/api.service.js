@@ -1,8 +1,8 @@
 var component = require('./api.module');
 
 class apiService {
-  constructor($resource, $http) {
-    this.fileApi = $resource('http://10.251.0.39:5000/', {path: '/'}, {
+  constructor($resource) {
+    this.fileApi = $resource('http://192.168.1.117:5000/', {path: '/'}, {
       addProduct: {
         method: 'PUT',
         params: {
@@ -11,18 +11,18 @@ class apiService {
       }
     });
 
-    this.productApi = $resource('http://10.251.0.39:5000/api/product/all');
+    this.getAllProducts = $resource('http://192.168.1.117:5000/api/product/all');
 
-    this.signIn = $resource('http://10.251.0.39:5000/api/signin:email:password', {email: '', password: ''});
-    this.signUp = $resource('http://10.251.0.39:5000/api/signup:email:password', {email: '', password: ''});
+    this.signIn = $resource('http://192.168.1.117:5000/api/signin:email:password', {email: '', password: ''});
+    this.signUp = $resource('http://192.168.1.117:5000/api/signup:email:password', {email: '', password: ''});
 
-    this.gardenApi = $resource('http://10.251.0.39:5000/api/garden');
-    this.offeringApi = $resource('http://10.251.0.39:5000/api/offering');
+    this.gardenApi = $resource('http://192.168.1.117:5000/api/garden');
+    this.offeringApi = $resource('http://192.168.1.117:5000/api/offering');
 
   }
 
   read() {
-    return this.productApi.get().$promise;
+    return this.getAllProducts.get().$promise;
   }
 
   addGarden(json) {

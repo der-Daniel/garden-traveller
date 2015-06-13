@@ -1,5 +1,7 @@
 <section class="signup middle-section">
     <div class="container">
+        <div ng-if="login.success" class="alert alert-danger" role="alert">Wrong E-Mail or Password !</div>
+        <div ng-if="login.warning" class="alert alert-danger" role="alert">Wrong E-Mail or Password !</div>
         <div class="input-group input-group-lg">
             <span class="input-group-addon"><i class="fa fa-user" ></i></span>
             <input action-on-enter="signup.register()" type="text" class="form-control" placeholder="E-Mail" aria-describedby="sizing-addon1" ng-model="signup.user.email">

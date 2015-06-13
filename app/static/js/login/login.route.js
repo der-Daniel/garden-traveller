@@ -99,6 +99,18 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
         }
       },
       title: 'eating'
+    })
+    .state('feed', {
+      parent: 'inside',
+      url: '^/feed',
+      views: {
+        'nav': {
+        },
+        'main': {
+          templateUrl: 'feed/feed.html'
+        }
+      },
+      title: 'eating'
     });
 
   $urlRouterProvider.otherwise('/home');
