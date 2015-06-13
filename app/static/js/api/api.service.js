@@ -11,14 +11,16 @@ class apiService {
       }
     });
 
+    this.productApi = $resource('http://10.251.0.39:5000/api/product/all');
+
   }
 
-  read(path) {
-    return this.fileApi.get({path: path}).$promise;
+  read() {
+    return this.productApi.get().$promise;
   }
 
   addProduct(product) {
-    return this.fileApi.addProduct({product: product}).$promise;
+    return this.fileApi.addProduct({path: 'api/product',product: product}).$promise;
   }
 
 }
