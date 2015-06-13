@@ -49,7 +49,10 @@
     "angular-ui-router": "./node_modules/angular-ui-router/build/angular-ui-router.js"
   },
   "browserify-shim": {
-    "angular": "global:angular",
+    "angular": {
+      "exports": "global:angular",
+      "depends": "jquery:jQuery"
+    },
     "angular-route": {
       "depends": "angular"
     },

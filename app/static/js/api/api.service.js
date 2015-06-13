@@ -13,8 +13,8 @@ class apiService {
 
     this.productApi = $resource('http://10.251.0.39:5000/api/product/all');
 
-    this.signIn = $resource('http://10.251.0.39:5000/api/signin:email:pass', {email: '', pass: ''});
-    this.signUp = $resource('http://10.251.0.39:5000/api/signup:email:pass', {email: '', pass: ''});
+    this.signIn = $resource('http://10.251.0.39:5000/api/signin:email:password', {email: '', password: ''});
+    this.signUp = $resource('http://10.251.0.39:5000/api/signup:email:password', {email: '', password: ''});
 
     this.gardenApi = $resource('http://10.251.0.39:5000/api/garden');
     this.offeringApi = $resource('http://10.251.0.39:5000/api/offering');
@@ -40,11 +40,11 @@ class apiService {
   }
 
   login(email, pass) {
-    return this.signIn.save({email: email, pass: pass}).$promise;
+    return this.signIn.save({email: email, password: pass}).$promise;
   }
 
   register(email, pass) {
-    return this.signUp.save({email: email, pass: pass}).$promise;
+    return this.signUp.save({email: email, password: pass}).$promise;
   }
 
 }

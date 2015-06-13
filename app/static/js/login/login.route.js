@@ -42,6 +42,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
       title: 'REA Jet Label Creator - Home'
     })
     .state('changeGarden', {
+      parent: 'inside',
       url: '^/changeGarden',
       views: {
         'nav': {
