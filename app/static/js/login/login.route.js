@@ -7,7 +7,20 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
   //$locationProvider.html5Mode(true);
 
   $stateProvider
+    .state('home', {
+      url: '^/home',
+      controller: 'HomeController as home',
+      templateUrl: 'login/home.html',
+      title: 'Home'
+    })
+    .state('inside', {
+      url: '^/inside',
+      controller: 'InsideController as inside',
+      templateUrl: 'login/inside.html',
+      title: 'Inside'
+    })
     .state('login', {
+      parent: 'home',
       url: '^/login',
       views: {
         'main': {
