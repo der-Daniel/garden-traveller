@@ -2,34 +2,28 @@
 //@import (less) "bootstrap-theme.css";
 @import (less) "grayscale.css";
 @import (less) "font-awesome.css";
-<<<<<<< HEAD
 @import "daniel";
 #app-wrapper {
   height: 100%;
 }
 
 .animate-show {
-  line-height: 20px;
+
   opacity: 1;
-  padding: 10px;
+
   border: 1px solid black;
   background: white;
 }
 
 .animate-show.ng-hide-add.ng-hide-add-active,
 .animate-show.ng-hide-remove.ng-hide-remove-active {
-  -webkit-transition: all linear 0.5s;
-  transition: all linear 0.5s;
+  opacity: 0.8;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
 }
 
 .animate-show.ng-hide {
-  line-height: 0;
-  opacity: 0;
-  padding: 0 10px;
-}
 
-.check-element {
-  padding: 10px;
-  border: 1px solid black;
-  background: white;
+  opacity: 0;
 }
