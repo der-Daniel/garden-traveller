@@ -39,17 +39,9 @@ class Offering(db.Model):
     price = db.Column(db.String(128), nullable=False)
     date = db.Column(DateTime, default=datetime.datetime.utcnow)
     garden_id = db.Column(db.Integer, db.ForeignKey('garden.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
     product = db.relationship(Product, foreign_keys='Offering.product_id')
-
-
-class Garden(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    address = db.Column(db.Integer, db.ForeignKey('address.id'), nullable=False)
-    location = db.Column(db.Integer, db.ForeignKey('location.id'), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    offerings = db.relationship('Offering', backref=db.backref('garden', lazy='joined'), lazy='dynamic')
 
 
 class Address(db.Model):
@@ -61,7 +53,19 @@ class Address(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
+class Garden(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(256), nullable=False, unique=True)
+    address_id = db.Column(db.Integer, db.ForeignKey('address.id'))
+    address = db.relationship(Address, foreign_keys='Garden.address_id')
+    location = db.relationship('Location', uselist=False, backref='garden')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    offerings = db.relationship('Offering', backref=db.backref('garden', lazy='joined'), lazy='dynamic')
+
+
+
 class Location(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     longitude = db.Column(db.String(128), nullable=False)
     latitude = db.Column(db.String(128), nullable=False)
+    garden_id = db.Column(db.Integer, db.ForeignKey('garden.id'))
