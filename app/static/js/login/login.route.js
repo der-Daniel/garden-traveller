@@ -11,13 +11,13 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
       url: '^/home',
       controller: 'HomeController as home',
       templateUrl: 'login/home.html',
-      title: 'Garden Traveller - Home'
+      title: 'Home'
     })
     .state('inside', {
       url: '^/inside',
       controller: 'InsideController as inside',
       templateUrl: 'login/inside.html',
-      title: 'Garden Traveller - Inside'
+      title: 'Inside'
     })
     .state('login', {
       parent: 'inside',
@@ -28,7 +28,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'login/login.html'
         }
       },
-      title: 'Garden Traveller - Login'
+      title: 'Login'
     })
     .state('createGarden', {
       parent: 'inside',
@@ -39,7 +39,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'garden/creategarden/creategarden.html'
         }
       },
-      title: 'REA Jet Label Creator - Home'
+      title: 'add garden'
     })
     .state('changeGarden', {
       parent: 'inside',
@@ -52,7 +52,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'garden/changegarden/changegarden.html'
         }
       },
-      title: 'Garden Traveller - Add Garden'
+      title: 'change garden'
     })
     .state('admin', {
       parent: 'inside',
@@ -63,7 +63,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'admin/admin.html'
         }
       },
-      title: 'Garden Traveller - Admin'
+      title: 'Admin'
     })
     .state('signup', {
       parent: 'inside',
@@ -74,7 +74,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'signup/signup.html'
         }
       },
-      title: 'Garden Traveller - Signup'
+      title: 'Signup'
     })
     .state('offering', {
       parent: 'inside',
@@ -85,7 +85,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'offering/offering.html'
         }
       },
-      title: 'Garden Traveller - Signup'
+      title: 'Signup'
     })
     .state('shopping', {
       parent: 'inside',
@@ -98,7 +98,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'shopping/shopping.html'
         }
       },
-      title: 'Garden Traveller - Shopping'
+      title: 'Shopping'
     });
 
   $urlRouterProvider.otherwise('/home');
