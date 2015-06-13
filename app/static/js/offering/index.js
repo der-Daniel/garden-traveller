@@ -1,0 +1,1 @@
+module.exports = require('./offering.module.js');

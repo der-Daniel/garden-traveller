@@ -10,11 +10,9 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
     .state('login', {
       url: '^/login',
       views: {
-        'nav': {
-        },
         'main': {
-          controller: 'LoginController as login',
-          templateUrl: 'login/login.html'
+          controller: 'OfferingController as offering',
+          templateUrl: 'offering/offering.html'
         }
       },
       title: 'REA Jet Label Creator - Home'
