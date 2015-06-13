@@ -45,7 +45,8 @@
     "angular-resource": "./node_modules/angular-resource/angular-resource.js",
     "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js",
     "jquery.easing": "./node_modules/jquery.easing/jquery.easing.js",
-    "grayscale": "./js/grayscale.js"
+    "grayscale": "./js/grayscale.js",
+    "angular-ui-router": "./node_modules/angular-ui-router/build/angular-ui-router.js"
   },
   "browserify-shim": {
     "angular": "global:angular",
