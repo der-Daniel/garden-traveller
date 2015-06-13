@@ -2,6 +2,7 @@ require('./tasks/browserify');
 require('./tasks/less');
 require('./tasks/bootstrap');
 require('./tasks/home');
+require('./tasks/fonts');
 require('./tasks/default');
 require('./tasks/templatecache');
 require('./tasks/images');
