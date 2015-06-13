@@ -19,6 +19,6 @@ function bundleScript() {
 }
 
 
-gulp.task('browserify', function() {
+gulp.task('browserify', ['less'], function() {
   return bundleScript();
 });
