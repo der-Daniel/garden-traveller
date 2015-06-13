@@ -2,7 +2,7 @@
 
 var gulp          = require('gulp');
 
-gulp.task('watch', ['server'], function() {
+gulp.task('watch', function() {
     gulp.watch('index.html', ['home']);
     gulp.watch('js/**/*', ['browserify']);
     gulp.watch('styles/**/*',  ['less']);
