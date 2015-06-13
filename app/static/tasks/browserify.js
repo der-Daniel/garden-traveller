@@ -8,9 +8,7 @@ function bundleScript() {
     entries: './js/main.js',
     debug: true
   })
-    .transform(babelify.configure({
-      extensions: [".es6"]
-    }))
+    .transform(babelify)
     .bundle()
     .on("error", function (err) {
       console.log("Error : " + err.message);
