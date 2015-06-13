@@ -111,6 +111,19 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
         }
       },
       title: 'community'
+    })
+    .state('map', {
+      parent: 'inside',
+      url: '^/map',
+      views: {
+        'nav': {
+        },
+        'main': {
+          controller: 'MapController as mapCtrl',
+          templateUrl: 'map/map.html'
+        }
+      },
+      title: 'Map'
     });
 
   $urlRouterProvider.otherwise('/home');

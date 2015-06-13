@@ -17,6 +17,8 @@ require('./admin');
 require('./api');
 require('./signup');
 require('./shopping');
+require('./map');
+require('gmaps');
 
 var requires = [
   'ngRoute',
@@ -33,7 +35,8 @@ var requires = [
   'app.garden',
   'mgcrea.ngStrap',
   'app.garden',
-  'app.shopping'
+  'app.shopping',
+  'app.map'
 ];
 
 angular.module('app', requires);
