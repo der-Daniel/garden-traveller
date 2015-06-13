@@ -21,6 +21,19 @@ function ShoppingController(apiService) {
         }
     ];
 
+    vm.shoppingList = [
+        {
+            product: 'kartoffel',
+            quantity: 10,
+            toBuy: 3
+        },
+        {
+            product: 'apfelaaaaa',
+            quantity: 10,
+            toBuy: 2
+        }
+    ];
+
     vm.decrease = decrease;
     vm.increase = increase;
     vm.finish = finish;
