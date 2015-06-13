@@ -87,6 +87,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
       title: 'Garden Traveller - Signup'
     })
     .state('shopping', {
+      parent: 'inside',
       url: '^/shopping',
       views: {
         'nav': {

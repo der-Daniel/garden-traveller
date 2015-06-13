@@ -7,7 +7,7 @@ require('angular-resource');
 require('angular-animate');
 require('./login');
 require('./garden');
-require('./templatecache.js');
+require('./templatecache');
 require('jquery');
 require('jquery.easing');
 require('grayscale');
@@ -30,10 +30,8 @@ var requires = [
   'app.api',
   'app.signup',
   'ngAnimate',
-  'app.garden'
+  'app.garden',
   'mgcrea.ngStrap',
-  'app.templateCache',
-  'app.login',
   'app.garden',
   'app.shopping'
 ];
