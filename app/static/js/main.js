@@ -14,6 +14,7 @@ require('bootstrap');
 require('./offering');
 require('./admin');
 require('./api');
+require('./signup');
 
 var requires = [
   'ngRoute',
@@ -25,7 +26,8 @@ var requires = [
   'app.creategarden',
   'app.offering',
   'app.admin',
-  'app.api'
+  'app.api',
+  'app.signup'
 ];
 
 angular.module('app', requires);

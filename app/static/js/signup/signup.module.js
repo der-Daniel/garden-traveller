@@ -1,3 +1,5 @@
-/**
- * Created by can on 13.06.15.
- */
+var requires = [];
+
+module.exports = angular.module('app.signup', requires);
+
+require('./signup.controller');
