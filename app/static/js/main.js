@@ -6,6 +6,10 @@ require('angular-sanitize');
 require('./login');
 require('./creategarden');
 require('./templatecache.js');
+require('jquery');
+require('jquery.easing');
+require('grayscale');
+require('bootstrap');
 
 var requires = [
   'ngRoute',
