@@ -1,1 +1,1 @@
-var browserify = require('./tasks/browserify');
+require('./tasks/browserify');
