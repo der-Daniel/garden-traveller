@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.3.16",
+    "angular-route": "^1.3.16",
     "angularjs": "0.0.1",
     "babelify": "^6.1.2",
     "bootstrap": "^3.3.4",
@@ -24,10 +25,10 @@
     ]
   },
   "browser": {
-    "angular": "./node_modules/angular/angular.js"
+    "angular": "./node_modules/angular/angular.js",
+    "angular-route": "./node_modules/angular/angular-route.js"
   },
   "browserify-shim": {
     "angular": "global:angular"
   }
-
 }
