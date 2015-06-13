@@ -5,7 +5,7 @@ var babelify = require("babelify");
 
 function bundleScript() {
   browserify({
-    entries: '../js/main.js',
+    entries: './js/main.js',
     debug: true
   })
     .transform(babelify.configure({
@@ -15,7 +15,7 @@ function bundleScript() {
     .on("error", function (err) {
       console.log("Error : " + err.message);
     })
-    .pipe(fs.createWriteStream("../dist/main.js"));
+    .pipe(fs.createWriteStream("./dist/main.js"));
 }
 
 
