@@ -12,6 +12,8 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(128), nullable=False)
     email = db.Column(db.String(128), unique=True, nullable=False)
     _password = db.Column(db.String(128), nullable=False)
+    address = db.relationship('Address', uselist=False, backref='user')
+    gardens = db.relationship('Garden', backref=db.backref('garden', lazy='joined'), lazy='dynamic')
 
     @hybrid_property
     def password(self):
@@ -24,25 +26,30 @@ class User(db.Model, UserMixin):
     def is_correct_password(self, plaintext):
         return bcrypt.check_password_hash(self._password, plaintext)
 
-    address = db.Column(db.Integer, db.ForeignKey('address.id'), nullable=False)
-    offerings = db.relationship('Offering', backref=db.backref('user', lazy='joined'), lazy='dynamic')
-    gardens = db.relationship('Garden', backref=db.backref('garden', lazy='joined'), lazy='dynamic')
 
+
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    name = db.Column(db.String(256), unique=True)
 
 
 class Offering(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    product = db.Column(db.String(128), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
     price = db.Column(db.String(128), nullable=False)
     date = db.Column(DateTime, default=datetime.datetime.utcnow)
-    garden = db.Column(db.Integer, db.ForeignKey('garden.id'), nullable=False)
+    garden_id = db.Column(db.Integer, db.ForeignKey('garden.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
+    product = db.relationship(Product, foreign_keys='Offering.product_id')
 
 
 class Garden(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     address = db.Column(db.Integer, db.ForeignKey('address.id'), nullable=False)
     location = db.Column(db.Integer, db.ForeignKey('location.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    offerings = db.relationship('Offering', backref=db.backref('garden', lazy='joined'), lazy='dynamic')
 
 
 class Address(db.Model):
@@ -51,6 +58,7 @@ class Address(db.Model):
     zipcode = db.Column(db.String(128), nullable=False)
     house_number = db.Column(db.String(128), nullable=False)
     city = db.Column(db.String(128), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
 class Location(db.Model):
