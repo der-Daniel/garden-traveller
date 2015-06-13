@@ -13,3 +13,12 @@ from flask import flash
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+#
+# Angular pages
+#
+@app.route('/app')
+def indexApp(**kwargs):
+    # angularjs requires the response composed like this:
+    return make_response(open('app/static/pages/index.html').read())
