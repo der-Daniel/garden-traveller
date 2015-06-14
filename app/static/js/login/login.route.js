@@ -2,9 +2,65 @@ var component = require('./login.module');
 
 component.config(Routes);
 
-function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
+function Routes($stateProvider, gsapifyRouterProvider, $urlRouterProvider) {
 
   //$locationProvider.html5Mode(true);
+
+  gsapifyRouterProvider.transition('slideAbove', {
+    duration: 1,
+    ease: 'Quart.easeInOut',
+    css: {
+      y: '-100%'
+    }
+  });
+
+  gsapifyRouterProvider.transition('slideBelow', {
+    duration: 1,
+    ease: 'Quart.easeInOut',
+    css: {
+      y: '100%'
+    }
+  });
+
+  gsapifyRouterProvider.transition('slideLeft', {
+    duration: 1,
+    ease: 'Quint.easeInOut',
+    css: {
+      x: '-100%'
+    }
+  });
+
+  gsapifyRouterProvider.transition('slideRight', {
+    duration: 1,
+    ease: 'Quint.easeInOut',
+    delay: 0.5,
+    css: {
+      x: '100%'
+    }
+  });
+
+  gsapifyRouterProvider.transition('fadeIn', {
+    duration: 0.5,
+    delay: 0.5,
+    css: {
+      opacity: 0,
+    }
+  });
+
+  gsapifyRouterProvider.transition('fadeOut', {
+    duration: 0.5,
+    css: {
+      opacity: 0,
+    }
+  });
+
+  gsapifyRouterProvider.transition('scaleDown', {
+    duration: 0.5,
+    css: {
+      scale: 0,
+      opacity: 0
+    }
+  });
 
   $stateProvider
     .state('home', {
@@ -28,7 +84,21 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'login/login.html'
         }
       },
-      title: 'Login'
+      title: 'Login',
+      data: {
+        'gsapifyRouter.main': {
+          enter: {
+            'in': {
+              transition: 'slideLeft',
+              priority: 1
+            },
+            out: {
+              transition: 'slideRight',
+              priority: 1
+            }
+          }
+        }
+      }
     })
     .state('createGarden', {
       parent: 'inside',
@@ -39,7 +109,21 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'garden/creategarden/creategarden.html'
         }
       },
-      title: 'add garden'
+      title: 'add garden',
+      data: {
+        'gsapifyRouter.main': {
+          enter: {
+            'in': {
+              transition: 'slideLeft',
+              priority: 1
+            },
+            out: {
+              transition: 'slideRight',
+              priority: 1
+            }
+          }
+        }
+      }
     })
     .state('changeGarden', {
       parent: 'inside',
@@ -52,7 +136,21 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'garden/changegarden/changegarden.html'
         }
       },
-      title: 'change garden'
+      title: 'change garden',
+      data: {
+        'gsapifyRouter.main': {
+          enter: {
+            'in': {
+              transition: 'slideLeft',
+              priority: 1
+            },
+            out: {
+              transition: 'slideRight',
+              priority: 1
+            }
+          }
+        }
+      }
     })
     .state('admin', {
       parent: 'inside',
@@ -63,7 +161,21 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'admin/admin.html'
         }
       },
-      title: 'Admin'
+      title: 'Admin',
+      data: {
+        'gsapifyRouter.main': {
+          enter: {
+            'in': {
+              transition: 'slideLeft',
+              priority: 1
+            },
+            out: {
+              transition: 'slideRight',
+              priority: 1
+            }
+          }
+        }
+      }
     })
     .state('signup', {
       parent: 'inside',
@@ -74,7 +186,21 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'signup/signup.html'
         }
       },
-      title: 'Signup'
+      title: 'Signup',
+      data: {
+        'gsapifyRouter.main': {
+          enter: {
+            'in': {
+              transition: 'slideLeft',
+              priority: 1
+            },
+            out: {
+              transition: 'slideRight',
+              priority: 1
+            }
+          }
+        }
+      }
     })
     .state('offering', {
       parent: 'inside',
@@ -85,7 +211,21 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'offering/offering.html'
         }
       },
-      title: 'My Offerings'
+      title: 'My Offerings',
+      data: {
+        'gsapifyRouter.main': {
+          enter: {
+            'in': {
+              transition: 'slideLeft',
+              priority: 1
+            },
+            out: {
+              transition: 'slideRight',
+              priority: 1
+            }
+          }
+        }
+      }
     })
     .state('offering/edit', {
       parent: 'inside',
@@ -96,7 +236,21 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'offering/edit.html'
         }
       },
-      title: 'My Offerings > Edit'
+      title: 'My Offerings > Edit',
+      data: {
+        'gsapifyRouter.main': {
+          enter: {
+            'in': {
+              transition: 'slideLeft',
+              priority: 1
+            },
+            out: {
+              transition: 'slideRight',
+              priority: 1
+            }
+          }
+        }
+      }
     })
     .state('shopping', {
       parent: 'inside',
@@ -109,7 +263,21 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'shopping/shopping.html'
         }
       },
-      title: 'eating'
+      title: 'eating',
+      data: {
+        'gsapifyRouter.main': {
+          enter: {
+            'in': {
+              transition: 'slideLeft',
+              priority: 1
+            },
+            out: {
+              transition: 'slideRight',
+              priority: 1
+            }
+          }
+        }
+      }
     })
     .state('feed', {
       parent: 'inside',
@@ -121,7 +289,21 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'feed/feed.html'
         }
       },
-      title: 'community'
+      title: 'community',
+      data: {
+        'gsapifyRouter.main': {
+          enter: {
+            'in': {
+              transition: 'slideLeft',
+              priority: 1
+            },
+            out: {
+              transition: 'slideRight',
+              priority: 1
+            }
+          }
+        }
+      }
     })
     .state('map', {
       parent: 'inside',
@@ -134,7 +316,21 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'map/map.html'
         }
       },
-      title: 'Map'
+      title: 'Map',
+      data: {
+        'gsapifyRouter.main': {
+          enter: {
+            'in': {
+              transition: 'slideLeft',
+              priority: 1
+            },
+            out: {
+              transition: 'slideRight',
+              priority: 1
+            }
+          }
+        }
+      }
     });
 
   $urlRouterProvider.otherwise('/home');
