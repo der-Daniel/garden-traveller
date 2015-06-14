@@ -8,6 +8,8 @@ from flask import flash
 from flask import jsonify
 from flask.ext.login import login_user, logout_user
 from flask.ext.login import login_required, current_user
+from .util import calculateLocationOrder
+
 
 from flask_restful import Resource
 from flask_restful import reqparse
@@ -142,8 +144,27 @@ class AllUserAddresses(Resource):
 class Route(Resource):
 
     def post(self):
-        args = routeParser.parse_args()
-        print('ROUTE')
+        # args = routeParser.parse_args()
+        userRequest = {
+            '2': 5,
+            '1': 10,
+            '4': 2
+        }
+        # willy
+        # willy
+        # lui
+        # darmstadtium
+        offerings = {
+            '2': {'longitude': '49.876224', 'latitude': '8.650388', 'product_id': 2, 'amount': 1000, 'garden_id': 3},
+            '1': {'longitude': '49.876224', 'latitude': '8.650388', 'product_id': 1, 'amount': 500, 'garden_id': 3},
+            '3': {'longitude': '49.873229', 'latitude': '8.651730', 'product_id': 5, 'amount': 60, 'garden_id': 1},
+            '4': {'longitude': '49.874174', 'latitude': '8.657718', 'product_id': 4, 'amount': 300, 'garden_id': 4}
+        }
+        startLoc = {'longitude': '49.872129', 'latitude': '8.652706'}
+        endLoc = {'longitude': '49.877739', 'latitude': '8.661381'}
+        orderedPlaces = calculateLocationOrder(userRequest, offerings, startLoc, endLoc)
+        print('ORDERED PLACES ', orderedPlaces)
+        return {'success': True, 'via_points': orderedPlaces}
 
 
 class ProductsAll(Resource):
@@ -327,59 +348,48 @@ def indexApp(path):
     return send_from_directory('/home/patrick/repos/bep/app/static/dist', path)
 
 
-# @app.before_request
-# def option_autoreply():
-#     """ Always reply 200 on OPTIONS request """
-#
-#     if request.method == 'OPTIONS':
-#         resp = app.make_default_options_response()
-#
-#         headers = None
-#         if 'ACCESS_CONTROL_REQUEST_HEADERS' in request.headers:
-#             headers = request.headers['ACCESS_CONTROL_REQUEST_HEADERS']
-#
-#         h = resp.headers
-#
-#         # Allow the origin which made the XHR
-#         h['Access-Control-Allow-Origin'] = '*'
-#         # Allow the actual method
-#         print(request.headers['Access-Control-Request-Method'])
-#         h['Access-Control-Allow-Methods'] = request.headers['Access-Control-Request-Method']
-#         # Allow for 10 seconds
-#         h['Access-Control-Max-Age'] = "10"
-#
-#         # We also keep current headers
-#         if headers is not None:
-#             h['Access-Control-Allow-Headers'] = headers
-#
-#         return resp
-#
-#
-# # @app.after_request
-# # def after_request(response):
-# #     print('ATER REQUERST')
-# #     print(response.headers)
-# #     response.headers.add('Access-Control-Allow-Origin', '*')
-# #     response.headers.add('Access-Control-Allow-Headers', 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token')
-# #     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-# #     print('ATER REQUERST 2')
-# #     print(response.headers)
-# #     return response
-# @app.after_request
-# def set_allow_origin(resp):
-#     """ Set origin for GET, POST, PUT, DELETE requests """
-#
-#     h = resp.headers
-#
-#     # Allow crossdomain for other HTTP Verbs
-#     if request.method != 'OPTIONS' and 'Origin' in request.headers:
-#         h['Access-Control-Allow-Origin'] = request.headers['Origin']
-#         h['Access-Control-Allow-Methods'] = 'POST'
-#         h['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
-#
-#     print(request.method)
-#     print('H')
-#     print(h)
-#     print('res headrs')
-#     print(resp.headers)
-#     return resp
+@app.before_request
+def option_autoreply():
+    """ Always reply 200 on OPTIONS request """
+
+    if request.method == 'OPTIONS':
+        resp = app.make_default_options_response()
+
+        headers = None
+        if 'ACCESS_CONTROL_REQUEST_HEADERS' in request.headers:
+            headers = request.headers['ACCESS_CONTROL_REQUEST_HEADERS']
+
+        h = resp.headers
+
+        # Allow the origin which made the XHR
+        h['Access-Control-Allow-Origin'] = '*'
+        # Allow the actual method
+        print(request.headers['Access-Control-Request-Method'])
+        h['Access-Control-Allow-Methods'] = request.headers['Access-Control-Request-Method']
+        # Allow for 10 seconds
+        h['Access-Control-Max-Age'] = "10"
+
+        # We also keep current headers
+        if headers is not None:
+            h['Access-Control-Allow-Headers'] = headers
+
+        return resp
+
+@app.after_request
+def set_allow_origin(resp):
+    """ Set origin for GET, POST, PUT, DELETE requests """
+
+    h = resp.headers
+
+    # Allow crossdomain for other HTTP Verbs
+    if request.method != 'OPTIONS' and 'Origin' in request.headers:
+        h['Access-Control-Allow-Origin'] = request.headers['Origin']
+        h['Access-Control-Allow-Methods'] = 'POST,GET,PUT,DELETE'
+        h['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+
+    # print(request.method)
+    # print('H')
+    # print(h)
+    # print('res headrs')
+    # print(resp.headers)
+    return resp

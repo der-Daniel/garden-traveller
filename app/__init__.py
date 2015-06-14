@@ -3,10 +3,10 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from flask_restful import Api
 from flask.ext.bcrypt import Bcrypt
 from flask.ext.login import LoginManager
-# from flask.ext.cors import CORS
+from flask.ext.cors import CORS
 
 app = Flask(__name__)
-# CORS(app, resources=r'/api/*', allow_headers='Content-Type')
+CORS(app, resources=r'/api/*', allow_headers='Content-Type')
 app.config.from_object('app.settings')
 app.url_map.strict_slashes = False
 db = SQLAlchemy(app)
