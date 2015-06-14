@@ -45,6 +45,8 @@
     "angular-sanitize": "./node_modules/angular-sanitize/angular-sanitize.js",
     "angular-animate": "./node_modules/angular-animate/angular-animate.js",
     "angular-resource": "./node_modules/angular-resource/angular-resource.js",
+    "angular-gsapify-router": "./bower_components/angular-gsapify-router/angular-gsapify-router.js",
+    "tweenmax": "./bower_components/gsap/src/minified/TweenMax.min.js",
     "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js",
     "jquery.easing": "./node_modules/jquery.easing/jquery.easing.js",
     "grayscale": "./js/grayscale.js",
@@ -68,6 +70,9 @@
     },
     "grayscale": {
       "depends": "jquery:$"
+    },
+    "angular-gsapify-router": {
+      "depends": "tweenmax:TweenMax"
     }
   }
 }
