@@ -39,8 +39,7 @@ function ShoppingController(apiService, $state) {
         _.set(vm.shoppingList, id + '.product', product);
     }
 
-    function finish() {
-        var self = this;
+    function finish() {/*
         GMaps.geolocate({
             success: function(position) {
                 var latitude = position.coords.latitude;
@@ -54,11 +53,14 @@ function ShoppingController(apiService, $state) {
                     request.longitude = longitude;
                     request.latitude = latitude;
                 });
-                apiService.offer(request).then(function(resp) {
-                    $state.go(map, {poi: resp});
+
+                apiService.postShopping().then(function(resp) {
+                    console.log(resp);
+                    $state.go('map', {poi: resp.via_points});
                 });
             }
-        });
+        });*/
+        $state.go('map');
     }
 
 }

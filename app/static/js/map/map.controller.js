@@ -56,7 +56,7 @@ function mapController(apiService, $window, $stateParams) {
         map.travelRoute({
             origin: list[i-1],
             destination: list[i],
-            travelMode: 'driving',
+            travelMode: 'walking',
             step: function(e) {
                 //$('#instructions').append('<li>'+e.instructions+'</li>');
                 $('#map').delay(450).fadeIn(200, function() {
@@ -78,12 +78,17 @@ function mapController(apiService, $window, $stateParams) {
 
     var nodes;
     function loadData() {
-        var promise = $stateParams.poi;//apiService.readRoute();
-        console.log(promise);
-        promise.then(function(data) {
-            nodes = data.via_points;
-           travelAll(data.via_points);
+
+        apiService.postShopping().then(function(resp) {
+            nodes = resp.via_points;
+            travelAll(resp.via_points);
         });
+        /*
+        var data = $stateParams.poi;
+        nodes = data.via_points;
+        console.log(data);
+       travelAll(data.via_points);
+       */
     }
 
     /*function findNamesToLangitudes(list) {

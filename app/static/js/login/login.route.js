@@ -125,7 +125,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
     })
     .state('map', {
       parent: 'inside',
-      url: '^/map/:poi',
+      url: '^/map',
       views: {
         'nav': {
         },
