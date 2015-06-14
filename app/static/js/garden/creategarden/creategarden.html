@@ -4,7 +4,7 @@
          <div class="col-md-12">
             <div class="input-group input-group-lg">
                <span class="input-group-addon"><i class="fa fa-width fa-user" ></i></span>
-               <input type="text" class="form-control" placeholder="name" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.name">
+               <input action-on-enter="createGardenCtrl.finish()" type="text" class="form-control" placeholder="name" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.name">
             </div>
          </div>
       </div>
@@ -15,13 +15,13 @@
          <div class="col-md-8">
             <div class="input-group input-group-lg">
                <span class="input-group-addon"><i class="fa fa-width fa-university" ></i></span>
-               <input type="text" class="form-control" placeholder="street" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.street">
+               <input action-on-enter="createGardenCtrl.finish()" type="text" class="form-control" placeholder="street" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.street">
             </div>
          </div>
          <div class="col-md-4">
             <div class="input-group input-group-lg">
                <span class="input-group-addon"><i class="fa fa-width fa-university" ></i></span>
-               <input type="text" class="form-control" placeholder="number" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.nr">
+               <input action-on-enter="createGardenCtrl.finish()" type="text" class="form-control" placeholder="number" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.nr">
             </div>
          </div>
       </div>
@@ -29,16 +29,21 @@
    <br>
    <div class="container">
       <div class="row">
-         <div class="col-md-6">
+         <div class="col-md-4">
             <div class="input-group input-group-lg">
                <span class="input-group-addon"><i class="fa fa-width fa-university" ></i></span>
-               <input type="text" class="form-control" placeholder="zip code" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.plz">
+               <input action-on-enter="createGardenCtrl.finish()" type="text" class="form-control" placeholder="zip code" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.plz">
             </div>
          </div>
          <div class="col-md-6">
             <div class="input-group input-group-lg">
                <span class="input-group-addon"><i class="fa fa-width fa-university" ></i></span>
-               <input type="text" class="form-control" placeholder="city" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.city">
+               <input action-on-enter="createGardenCtrl.finish()" type="text" class="form-control" placeholder="city" aria-describedby="sizing-addon1" ng-model="createGardenCtrl.city">
+            </div>
+         </div>
+         <div class="col-md-2">
+            <div class="input-group input-group-lg">
+               <span class="input-group-addon geolocate" ng-click="createGardenCtrl.geoLocate()"><i class="fa fa-location-arrow" ></i></span>
             </div>
          </div>
       </div>

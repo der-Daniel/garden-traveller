@@ -20,6 +20,8 @@ class apiService {
     this.gardenApi = $resource('http://192.168.1.117:5000/api/garden');
     this.offeringApi = $resource('http://192.168.1.117:5000/api/offering');
 
+    this.locate = $resource('https://router.project-osrm.org/match:loc')
+
   }
 
   read() {
@@ -49,6 +51,10 @@ class apiService {
       .save({surname: surname, name: name, email: email, password: pass, street: street,
         houseNumber: houseNumber, zipCode: zipCode, city: city})
       .$promise;
+  }
+
+  locate(loc) {
+    return this.locate.get({loc: loc}).$promise;
   }
 
 }

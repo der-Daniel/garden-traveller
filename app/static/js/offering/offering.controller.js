@@ -4,7 +4,6 @@ class OfferingController {
   constructor(apiService) {
     var vm = this;
 
-    vm.product;
     vm.amount = 0;
     vm.location = '';
 

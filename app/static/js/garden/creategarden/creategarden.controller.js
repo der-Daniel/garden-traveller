@@ -1,21 +1,42 @@
 var component = require('./../garden.module');
 
-component.controller('CreateGardenController', CreateGardenController);
+var GMaps = require('gmaps');
 
-function CreateGardenController(apiService) {
+class CreateGardenController{
+  constructor(apiService) {
     var vm = this;
 
-    vm.finish = finish;
+    this.apiService = apiService;
+  }
 
-    function finish() {
-        var json = {
-            name: vm.name,
-            street: vm.street,
-            houseNumber: vm.nr,
-            zipCode: vm.plz,
-            longitude: 0,
-            latitude: 0
+  finish() {
+    var json = {
+      name: vm.name,
+      street: vm.street,
+      houseNumber: vm.nr,
+      zipCode: vm.plz,
+      longitude: 0,
+      latitude: 0
+    };
+    apiService.addGarden(json);
+  }
+
+  geoLocate() {
+    var self = this;
+    GMaps.geolocate({
+      success: function(position) {
+        var location = {
+          lat: position.coords.latitude,
+          lon: position.coords.longitude
         };
-        apiService.addGarden(json);
-    }
+        self.apiService.locate(location).then(function(loc) {
+          console.log(loc);
+        });
+      }
+    });
+  }
 }
+
+component.controller('CreateGardenController', CreateGardenController);
+
+
