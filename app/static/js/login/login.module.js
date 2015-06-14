@@ -1,6 +1,7 @@
 require('angular-ui-router');
+require('angular-gsapify-router');
 
-var requires = ['ui.router'];
+var requires = ['ui.router', 'hj.gsapifyRouter'];
 
 module.exports = angular.module('app.login', requires);
 
