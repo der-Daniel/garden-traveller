@@ -23,9 +23,9 @@ class EditController {
     });
     console.log({
       amount: parseInt(this.amount),
-      price: this.price,
-      productId: this.productId,
-      gardenId: this.gardenId
+      price: parseInt(this.price),
+      productId: parseInt(this.productId),
+      gardenId: parseInt(this.gardenId)
     });
     this.$state.go('offering')
   }

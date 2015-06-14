@@ -19,7 +19,7 @@ class apiService {
 
     this.gardenApi = $resource('http://10.251.0.39:5000/api/garden/');
     this.allGardenApi = $resource('http://10.251.0.39:5000/api/garden/all');
-    this.offeringApi = $resource('http://10.251.0.39:5000/api/offering/:id', {id: 1});
+    this.offeringApiGet = $resource('http://10.251.0.39:5000/api/offering/:id', {id: 1});
     this.gardenApiAll = $resource('http://10.251.0.39:5000/api/garden/all');
     this.offeringApiAll = $resource('http://10.251.0.39:5000/api/offering/all');
 
@@ -59,7 +59,7 @@ class apiService {
   }
 
   saveOffering(json) {
-    return this.offeringApi.save(json);
+    return this.offeringApi.save(json).$promise;
   }
 
   addProduct(product) {
