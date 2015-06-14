@@ -15,7 +15,13 @@ def calculateLocationOrder(userRequest, offerings, startLoc, endLoc):
             print('ERROR: Can not find offering for product id %s' % productId)
             return None
 
-        unorderedOfferings.append(offerings[offeringId])
+        skip = False
+        for o in unorderedOfferings:
+            if o['garden_id'] == offerings[offeringId]['garden_id']:
+                skip = True
+                break
+        if not skip:
+            unorderedOfferings.append(offerings[offeringId])
 
     # orderedOfferings = getOrderedOfferings(startLoc, endLoc, unorderedOfferings)
     orderedOfferings = getOrderedOfferingsOSM(startLoc, endLoc, unorderedOfferings)

@@ -71,6 +71,22 @@ offeringUpdateParser.add_argument('price', type=int, help='Price')
 #########################################################################################
 #                          API Functionality
 #########################################################################################
+class OfferingAll(Resource):
+    decorators = [login_required]
+
+    def get(self):
+        offerings = current_user.offerings
+        data = {}
+        for offering in offerings:
+            data[offering.id] = {
+                'product': offering.product.name,
+                'amount': offering.amount,
+                'price': offering.price,
+                'productId': offering.product_id,
+                'gardenId': offering.garden_id
+            }
+        return {'success': True, 'offerings': data}
+
 
 class Offering(Resource):
     # decorators = [login_required]
@@ -205,7 +221,11 @@ class GardensAll(Resource):
             result[garden.id] = {
                 'name': garden.name,
                 'longitude': garden.location.longitude,
-                'latitude': garden.location.latitude
+                'latitude': garden.location.latitude,
+                'city': garden.address.city,
+                'street': garden.address.street,
+                'zipcode': garden.address.zipcode,
+                'house_number': garden.address.house_number
             }
         return {'success': True, 'gardens': result}
 
@@ -249,6 +269,7 @@ class Garden(Resource):
 
 # offering
 api.add_resource(Offering, '/api/offering', '/api/offering/<string:id>')
+api.add_resource(OfferingAll, '/api/offering/all')
 
 # address
 api.add_resource(Address, '/api/address/<string:id>')
@@ -310,6 +331,7 @@ def signin():
     else:
         return jsonify({'success': False, 'message': 'Wrong email or password!'})
 
+
 @app.route('/api/signout')
 @login_required
 def signout():
@@ -332,10 +354,6 @@ def adminUsers():
         }
         result[user.id] = userData
     return jsonify(result)
-
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
 
 #
 # Angular pages
@@ -364,7 +382,6 @@ def option_autoreply():
         # Allow the origin which made the XHR
         h['Access-Control-Allow-Origin'] = '*'
         # Allow the actual method
-        print(request.headers['Access-Control-Request-Method'])
         h['Access-Control-Allow-Methods'] = request.headers['Access-Control-Request-Method']
         # Allow for 10 seconds
         h['Access-Control-Max-Age'] = "10"
@@ -385,7 +402,7 @@ def set_allow_origin(resp):
     if request.method != 'OPTIONS' and 'Origin' in request.headers:
         h['Access-Control-Allow-Origin'] = request.headers['Origin']
         h['Access-Control-Allow-Methods'] = 'POST,GET,PUT,DELETE'
-        h['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token'
+        h['Access-Control-Allow-Headers'] = 'Origin, Accept, Content-Type, X-Requested-With, X-CSRF-Token, Authorization'
 
     # print(request.method)
     # print('H')
