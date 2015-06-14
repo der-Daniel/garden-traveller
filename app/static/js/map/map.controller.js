@@ -4,7 +4,7 @@ component.controller('MapController', mapController);
 
 var GMaps = require('gmaps');
 
-function mapController(apiService) {
+function mapController(apiService, $window) {
     var vm = this;
 
     var map;
@@ -35,14 +35,24 @@ function mapController(apiService) {
         ]);*/
         loadData();
     };
+    vm.startNav = startNav;
 
     loadData();
 
     function travelAll(list) {
+        //var names = findNamesToLangitudes(list);
         travel(list, 1);
     }
 
     function travel(list, i) {
+        map.addMarker({
+            lat: list[i][0],
+            lng: list[i][1],
+            title: 'title',
+            infoWindow: {
+                content: '<p>'+'</p>'
+            }
+        });
         map.travelRoute({
             origin: list[i-1],
             destination: list[i],
@@ -66,12 +76,35 @@ function mapController(apiService) {
         });
     }
 
+    var nodes;
     function loadData() {
         var promise = apiService.readRoute();
         promise.then(function(data) {
-            console.log(data);
+            nodes = data.via_points;
            travelAll(data.via_points);
         });
+    }
+
+    /*function findNamesToLangitudes(list) {
+        var promise = apiService.getAllGarden();
+        var names = [];
+        promise.then(function(gardens) {console.log(gardens);
+            angular.forEach(list, function(item) {
+                angular.forEach(gardens, function(garden) {
+                    if (item[0].latitude == garden.latitude && item[1].longitude == garden.longitude)
+                        names.push(garden.name);
+                })
+            });
+            return names;
+        })
+    }*/
+
+    function startNav() {
+        var url = 'http://www.google.de/maps/dir/';
+        angular.forEach(nodes, function(item) {
+           url += item[0]+','+item[1]+'/';
+        });
+        $window.open(url, '_blank');
     }
 
 }
