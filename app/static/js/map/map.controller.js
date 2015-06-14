@@ -36,6 +36,8 @@ function mapController(apiService) {
         loadData();
     };
 
+    loadData();
+
     function travelAll(list) {
         travel(list, 1);
     }
