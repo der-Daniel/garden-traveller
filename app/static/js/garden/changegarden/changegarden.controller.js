@@ -2,7 +2,7 @@ var component = require('./../garden.module');
 
 component.controller('ChangeGardenController', ChangeGardenController);
 
-function ChangeGardenController(apiService) {
+function ChangeGardenController(apiService, $state) {
     var vm = this;
 
     vm.gardens = [
@@ -25,8 +25,13 @@ function ChangeGardenController(apiService) {
     vm.edit = edit;
     vm.finish = finish;
     vm.delete = _delete;
+    vm.addGarden = addGarden;
 
     vm.editNr = -1;
+
+    function addGarden() {
+        $state.go('createGarden');
+    }
 
     function edit(index) {
         if (vm.editNr != index) {console.log(vm.editNr);
@@ -77,6 +82,7 @@ function ChangeGardenController(apiService) {
         promise.then(function(data) {
             angular.forEach(data.gardens, function(garden) {
                 vm.gardens.push({
+                    name: garden.name,
                     street: garden.street,
                     nr: garden.house_number,
                     plz: garden.zipcode,
