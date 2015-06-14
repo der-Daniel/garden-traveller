@@ -41,6 +41,7 @@ function ShoppingController(apiService, $state) {
 
     function finish() {
         var self = this;
+        /*
         GMaps.geolocate({
             success: function(position) {
                 var latitude = position.coords.latitude;
@@ -54,11 +55,16 @@ function ShoppingController(apiService, $state) {
                     request.longitude = longitude;
                     request.latitude = latitude;
                 });
+                
                 apiService.offer(request).then(function(resp) {
                     $state.go(map, {poi: resp});
                 });
+                
             }
         });
+        */
+        
+                $state.go('map');
     }
 
 }
