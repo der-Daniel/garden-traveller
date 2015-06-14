@@ -25,7 +25,7 @@
     <h2>my list</h2>
 
     <ul class="list-group">
-        <li class="list-group-item" ng-repeat="shopping in shoppingCtrl.shoppingList" ng-if="amount != 0">
+        <li class="list-group-item" ng-repeat="shopping in shoppingCtrl.shoppingList" ng-if="shopping.amount != 0">
             {{shopping.product}}
             <span class="badge">{{shopping.amount}}</span>
         </li>

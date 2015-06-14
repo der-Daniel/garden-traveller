@@ -28,6 +28,12 @@ class apiService {
 
     this.addProductApi = $resource('http://192.168.1.117:5000/api/product/:name', {name: ''});
 
+    this.offeringApi = $resource('http://192.168.1.117:5000/api/offering/:offer', {offer: {}});
+
+  }
+
+  offer(offer) {
+    return this.offeringApi.get({offer: offer}).$promise;
   }
 
   read() {

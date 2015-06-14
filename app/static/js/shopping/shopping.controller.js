@@ -3,8 +3,9 @@ var component = require('./shopping.module');
 component.controller('ShoppingController', ShoppingController);
 
 var _ = require('lodash');
+var GMaps = require('gmaps');
 
-function ShoppingController(apiService) {
+function ShoppingController(apiService, $state) {
     var vm = this;
 
     getAllProducts();
@@ -39,7 +40,25 @@ function ShoppingController(apiService) {
     }
 
     function finish() {
+        var self = this;
+        GMaps.geolocate({
+            success: function(position) {
+                var latitude = position.coords.latitude;
+                var longitude = position.coords.longitude;
 
+                var request = {};
+                Object.keys(vm.shoppingList).forEach(function(id) {
+                    if (_.get(vm.shoppingList, id + '.amount', 0) > 0) {
+                        request[id].amount = vm.shoppingList[id].amount;
+                    }
+                    request.longitude = longitude;
+                    request.latitude = latitude;
+                });
+                apiService.offer(request).then(function(resp) {
+                    $state.go(map, {poi: resp});
+                });
+            }
+        });
     }
 
 }
