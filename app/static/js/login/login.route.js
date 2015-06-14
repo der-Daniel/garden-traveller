@@ -109,7 +109,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'shopping/shopping.html'
         }
       },
-      title: 'eating'
+      title: 'food trip'
     })
     .state('feed', {
       parent: 'inside',
