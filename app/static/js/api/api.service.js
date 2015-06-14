@@ -28,7 +28,7 @@ class apiService {
 
     this.addProductApi = $resource('http://10.251.0.39:5000/api/product/:name', {name: ''});
 
-    this.offeringApi = $resource('http://192.168.1.117:5000/api/offering');
+    this.offeringApi = $resource('http://10.251.0.39:5000/api/offering');
 
   }
 
