@@ -1,63 +1,67 @@
-<section class="new-garden middle-section">
-    <div class="container change-garden-div {{changeGardenCtrl.editNr == $index ? 'change-garden-div-active' : ''}}"
-            ng-repeat="garden in changeGardenCtrl.gardens track by $index"
-            ng-click="changeGardenCtrl.edit($index)">
-        <br>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon"><i class="fa fa-width fa-university" ></i></span>
-                    <input type="text" class="form-control" placeholder="street" aria-describedby="sizing-addon1"
-                           ng-model="changeGardenCtrl.gardens[$index].street"
-                           disabled id="changeGardenStreet{{$index}}">
+<section class="new-garden">
+    <div ng-repeat="garden in changeGardenCtrl.gardens track by $index">
+        <div class="container">
+            <h2>
+                {{garden.name}}
+            </h2>
+        </divclas>
+        <div class="container change-garden-div {{changeGardenCtrl.editNr == $index ? 'change-garden-div-active' : ''}}"
+                ng-click="changeGardenCtrl.edit($index)">
+            <br>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-width fa-university" ></i></span>
+                        <input type="text" class="form-control" placeholder="street" aria-describedby="sizing-addon1"
+                               ng-model="changeGardenCtrl.gardens[$index].street"
+                               disabled id="changeGardenStreet{{$index}}">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-width fa-university" ></i></span>
+                        <input type="text" class="form-control" placeholder="number" aria-describedby="sizing-addon1"
+                               ng-model="changeGardenCtrl.gardens[$index].nr"
+                               disabled id="changeGardenNr{{$index}}">
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon"><i class="fa fa-width fa-university" ></i></span>
-                    <input type="text" class="form-control" placeholder="number" aria-describedby="sizing-addon1"
-                           ng-model="changeGardenCtrl.gardens[$index].nr"
-                           disabled id="changeGardenNr{{$index}}">
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-width fa-university" ></i></span>
+                        <input type="text" class="form-control" placeholder="zip code" aria-describedby="sizing-addon1"
+                               ng-model="changeGardenCtrl.gardens[$index].plz"
+                               disabled id="changeGardenPlz{{$index}}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-width fa-university" ></i></span>
+                        <input type="text" class="form-control" placeholder="city" aria-describedby="sizing-addon1"
+                               ng-model="changeGardenCtrl.gardens[$index].city"
+                               disabled id="changeGardenCity{{$index}}">
+                    </div>
                 </div>
             </div>
+            <br>
+            <div class="row animate-show" ng-show="changeGardenCtrl.editNr == $index">
+                <div class="col-md-6">
+                    <button class="input-group input-group-lg form-control" ng-click="changeGardenCtrl.finish($index,$event)">
+                        Commit
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <button class="input-group input-group-lg form-control" ng-click="changeGardenCtrl.delete($index,$event)">
+                        Delete
+                    </button>
+                </div>
+            </div>
+            <br>
         </div>
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon"><i class="fa fa-width fa-university" ></i></span>
-                    <input type="text" class="form-control" placeholder="zip code" aria-describedby="sizing-addon1"
-                           ng-model="changeGardenCtrl.gardens[$index].plz"
-                           disabled id="changeGardenPlz{{$index}}">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon"><i class="fa fa-width fa-university" ></i></span>
-                    <input type="text" class="form-control" placeholder="city" aria-describedby="sizing-addon1"
-                           ng-model="changeGardenCtrl.gardens[$index].city"
-                           disabled id="changeGardenCity{{$index}}">
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <button class="input-group input-group-lg form-control" ng-click="changeGardenCtrl.finish($index,$event)"
-                        ng-show="changeGardenCtrl.editNr == $index">
-                    Commit
-                </button>
-            </div>
-            <div class="col-md-6">
-                <button class="input-group input-group-lg form-control" ng-click="changeGardenCtrl.delete($index,$event)"
-                        ng-show="changeGardenCtrl.editNr == $index">
-                    Delete
-                </button>
-            </div>
-        </div>
-        <br>
+        <hr>
     </div>
-
 
     <br>
 

@@ -77,6 +77,7 @@ function ChangeGardenController(apiService) {
         promise.then(function(data) {
             angular.forEach(data.gardens, function(garden) {
                 vm.gardens.push({
+                    name: garden.name,
                     street: garden.street,
                     nr: garden.house_number,
                     plz: garden.zipcode,
