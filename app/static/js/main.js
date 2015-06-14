@@ -40,4 +40,6 @@ var requires = [
   'xeditable'
 ];
 
-angular.module('app', requires);
+angular.module('app', requires).run(function($httpProvider) {
+  $httpProvider.defaults.withCredentials = true;
+});
