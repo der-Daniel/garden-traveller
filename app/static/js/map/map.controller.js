@@ -4,7 +4,7 @@ component.controller('MapController', mapController);
 
 var GMaps = require('gmaps');
 
-function mapController(apiService, $window) {
+function mapController(apiService, $window, $stateParams) {
     var vm = this;
 
     var map;
@@ -78,7 +78,8 @@ function mapController(apiService, $window) {
 
     var nodes;
     function loadData() {
-        var promise = apiService.readRoute();
+        var promise = $stateParams.poi;//apiService.readRoute();
+        console.log(promise);
         promise.then(function(data) {
             nodes = data.via_points;
            travelAll(data.via_points);
