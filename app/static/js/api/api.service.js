@@ -2,7 +2,7 @@ var component = require('./api.module');
 
 class apiService {
   constructor($resource) {
-    this.fileApi = $resource('http://192.168.1.117:5000/', {path: '/'}, {
+    this.fileApi = $resource('http://10.251.0.39:5000/', {path: '/'}, {
       addProduct: {
         method: 'PUT',
         params: {
@@ -11,24 +11,24 @@ class apiService {
       }
     });
 
-    this.getAllProducts = $resource('http://192.168.1.117:5000/api/product/all');
+    this.getAllProducts = $resource('http://10.251.0.39:5000/api/product/all');
 
-    this.signIn = $resource('http://192.168.1.117:5000/api/signin:email:password', {email: '', password: ''});
-    this.signUp = $resource('http://192.168.1.117:5000/api/signup:surname:name:email:password:street:houseNumber:zipCode:city',
+    this.signIn = $resource('http://10.251.0.39:5000/api/signin:email:password', {email: '', password: ''});
+    this.signUp = $resource('http://10.251.0.39:5000/api/signup:surname:name:email:password:street:houseNumber:zipCode:city',
       {surname: '', name: '', email: '', password: '', street: '', houseNumber: '', zipCode: '', city: ''});
 
-    this.gardenApi = $resource('http://192.168.1.117:5000/api/garden/');
-    this.allGardenApi = $resource('http://192.168.1.117:5000/api/garden/all');
-    this.offeringApi = $resource('http://192.168.1.117:5000/api/offering/:id', {id: 1});
-    this.gardenApiAll = $resource('http://192.168.1.117:5000/api/garden/all');
-    this.offeringApiAll = $resource('http://192.168.1.117:5000/api/offering/all');
+    this.gardenApi = $resource('http://10.251.0.39:5000/api/garden/');
+    this.allGardenApi = $resource('http://10.251.0.39:5000/api/garden/all');
+    this.offeringApi = $resource('http://10.251.0.39:5000/api/offering/:id', {id: 1});
+    this.gardenApiAll = $resource('http://10.251.0.39:5000/api/garden/all');
+    this.offeringApiAll = $resource('http://10.251.0.39:5000/api/offering/all');
 
-    this.routeApi = $resource('http://192.168.1.117:5000/api/route');
+    this.routeApi = $resource('http://10.251.0.39:5000/api/route');
     this.locateApi = $resource('https://router.project-osrm.org/match:loc');
 
-    this.addProductApi = $resource('http://192.168.1.117:5000/api/product/:name', {name: ''});
+    this.addProductApi = $resource('http://10.251.0.39:5000/api/product/:name', {name: ''});
 
-    this.offeringApi = $resource('http://192.168.1.117:5000/api/offering/:offer', {offer: {}});
+    this.offeringApi = $resource('http://10.251.0.39:5000/api/offering/:offer', {offer: {}});
 
   }
 
