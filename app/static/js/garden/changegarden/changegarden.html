@@ -1,4 +1,10 @@
 <section class="new-garden">
+    <div class="container" style="margin-top: 100px; margin-bottom: 50px;">
+    <button type="button" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> add garden
+      </button>  
+      
+    </div>
     <div ng-repeat="garden in changeGardenCtrl.gardens track by $index">
         <div class="container">
             <h2>
@@ -60,7 +66,7 @@
             </div>
             <br>
         </div>
-        <hr>
+        <hr style="margin: 50px 0;">
     </div>
 
     <br>
