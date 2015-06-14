@@ -1,45 +1,28 @@
-
 <section id="shopping" class="middle-section">
-<div class="container">
-    
-
-
-
-    <h2>my list</h2>
-
-    <ul class="list-group">
-        <li class="list-group-item" ng-repeat="shopping in shoppingCtrl.shoppingList" ng-if="shopping.amount != 0">
-            {{shopping.product}}
-            <span class="badge">{{shopping.amount}}</span>
-        </li>
-    </ul>
-    
-    
-    
-    
-    <h2>available products</h2>
-
-    <ul>
-        <li ng-repeat="(id, product) in shoppingCtrl.products">
-            {{product}}
-            <img src={{"img/" + product + ".png"}} >
+   <div class="container">
+      <h2>available products</h2>
+      <ul>
+         <div class="col col-md-4 col-xs-6" ng-repeat="(id, product) in shoppingCtrl.products">
+            <!--{{product}}-->
+            <img src="{{'img/' + product + '.png'}}" width="150px">
             <button class="btn btn-default" ng-click="shoppingCtrl.decrease(product, id)">
-                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
             </button><button class="btn btn-default" ng-click="shoppingCtrl.increase(product, id)">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        </button>
-        </li>
-
-    </ul>
-
-
-
-
-
-
-    <button class="btn btn-default" ng-click="shoppingCtrl.finish()">
-        Bestätigen
-    </button>
-
-</div>
+            </button>
+         </div>
+      </ul>
+    </div>
+    <div class="container top-section">
+      <h2>my list</h2>
+      <ul class="list-group">
+         <li class="list-group-item" ng-repeat="shopping in shoppingCtrl.shoppingList" ng-if="shopping.amount != 0">
+            {{shopping.product}}
+            <span class="badge">{{shopping.amount}}</span>
+         </li>
+      </ul>
+      <button class="btn btn-default" ng-click="shoppingCtrl.finish()">
+      Bestätigen
+      </button>
+   </div>
 </section>
