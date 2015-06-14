@@ -4,7 +4,7 @@ component.controller('MapController', mapController);
 
 var GMaps = require('gmaps');
 
-function mapController() {
+function mapController(apiService) {
     var vm = this;
 
     var map;
@@ -27,12 +27,13 @@ function mapController() {
     });
 
     vm.test = function() {
-        travelAll([
+        /*travelAll([
             [49.8768929, 8.642697],
             [49.8647838, 8.5896493],
             [49.87324, 8.65173],
             [49.8768929, 8.642697]
-        ]);
+        ]);*/
+        loadData();
     };
 
     function travelAll(list) {
@@ -60,6 +61,14 @@ function mapController() {
                 if (i < list.length - 1)
                     travel(list, i+1);
             }
+        });
+    }
+
+    function loadData() {
+        var promise = apiService.readRoute();
+        promise.then(function(data) {
+            console.log(data);
+           travelAll(data.via_points);
         });
     }
 
