@@ -14,7 +14,8 @@ class apiService {
     this.getAllProducts = $resource('http://192.168.1.117:5000/api/product/all');
 
     this.signIn = $resource('http://192.168.1.117:5000/api/signin:email:password', {email: '', password: ''});
-    this.signUp = $resource('http://192.168.1.117:5000/api/signup:email:password', {email: '', password: ''});
+    this.signUp = $resource('http://192.168.1.117:5000/api/signup:surname:name:email:password:street:houseNumber:zipCode:city',
+      {surname: '', name: '', email: '', password: '', street: '', houseNumber: '', zipCode: '', city: ''});
 
     this.gardenApi = $resource('http://192.168.1.117:5000/api/garden');
     this.offeringApi = $resource('http://192.168.1.117:5000/api/offering');
@@ -43,8 +44,11 @@ class apiService {
     return this.signIn.save({email: email, password: pass}).$promise;
   }
 
-  register(email, pass) {
-    return this.signUp.save({email: email, password: pass}).$promise;
+  register(surname, name, email, pass, street, houseNumber, zipCode, city) {
+    return this.signUp
+      .save({surname: surname, name: name, email: email, password: pass, street: street,
+        houseNumber: houseNumber, zipCode: zipCode, city: city})
+      .$promise;
   }
 
 }

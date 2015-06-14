@@ -18,24 +18,27 @@
                     <a href="#page-top"></a>
                 </li>
                 <!-- logged IN navi -->
-                <li>
-                    <a class="page-scroll" href="#about">eating</a>
+                <li ng-if="inside.logedIn">
+                    <a class="page-scroll" href="/#/shopping">eating</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="#about">gardens</a>
+                <li ng-if="inside.logedIn">
+                    <a class="page-scroll" href="/#/createGarden">add garden</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="#about">logout</a>
+                <li ng-if="inside.logedIn">
+                    <a class="page-scroll" href="/#/changeGarden">manage my gardens</a>
+                </li>
+                <li ng-if="inside.logedIn">
+                    <a class="page-scroll" ng-click="inside.logout()" href="/#/home">logout</a>
                 </li>
                 <!-- logged OUT navi -->
-                <li>
+                <li ng-if="!inside.logedIn">
                     <a class="page-scroll" href="#about">About</a>
                 </li>
-                <li>
+                <li ng-if="!inside.logedIn">
                     <a class="page-scroll" href="#download">Benefits</a>
                 </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Login</a>
+                <li ng-if="!inside.logedIn">
+                    <a class="page-scroll" href="/#/login">Login</a>
                 </li>
             </ul>
         </div>

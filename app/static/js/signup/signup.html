@@ -1,15 +1,61 @@
 <section class="signup middle-section">
     <div class="container">
-        <div ng-if="login.success" class="alert alert-danger" role="alert">Wrong E-Mail or Password !</div>
-        <div ng-if="login.warning" class="alert alert-danger" role="alert">Wrong E-Mail or Password !</div>
+        <div ng-if="signup.success" class="alert alert-success" role="alert">Registration successful.</div>
+        <div ng-if="signup.warning" class="alert alert-danger" role="alert">{{signup.message}}</div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-user" ></i></span>
+                        <input action-on-enter="signup.register()" type="text" class="form-control" placeholder="surname" aria-describedby="sizing-addon1" ng-model="signup.user.surname">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-user" ></i></span>
+                        <input action-on-enter="signup.register()" type="text" class="form-control" placeholder="name" aria-describedby="sizing-addon1" ng-model="signup.user.name">
+                    </div>
+                </div>
+            </div>
+        <br>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-user" ></i></span>
+                        <input action-on-enter="signup.register()" type="text" class="form-control" placeholder="street" aria-describedby="sizing-addon1" ng-model="signup.user.street">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-user" ></i></span>
+                        <input action-on-enter="signup.register()" type="text" class="form-control" placeholder="number" aria-describedby="sizing-addon1" ng-model="signup.user.nr">
+                    </div>
+                </div>
+            </div>
+        <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-user" ></i></span>
+                        <input action-on-enter="signup.register()" type="text" class="form-control" placeholder="zip code" aria-describedby="sizing-addon1" ng-model="signup.user.zipcode">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-addon"><i class="fa fa-user" ></i></span>
+                        <input action-on-enter="signup.register()" type="text" class="form-control" placeholder="city" aria-describedby="sizing-addon1" ng-model="signup.user.city">
+                    </div>
+                </div>
+            </div>
+        <br>
         <div class="input-group input-group-lg">
             <span class="input-group-addon"><i class="fa fa-user" ></i></span>
-            <input action-on-enter="signup.register()" type="text" class="form-control" placeholder="E-Mail" aria-describedby="sizing-addon1" ng-model="signup.user.email">
+            <input action-on-enter="signup.register()" type="text" class="form-control" placeholder="e-mail" aria-describedby="sizing-addon1" ng-model="signup.user.email">
         </div>
         <br>
         <div class="input-group input-group-lg">
             <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-lock"></i></span>
-            <input action-on-enter="signup.register()" type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon1" ng-model="signup.user.pass">
+            <input action-on-enter="signup.register()" type="password" class="form-control" placeholder="password" aria-describedby="sizing-addon1" ng-model="signup.user.pass">
         </div>
         <br>
         <button type="button" class="btn btn-default btn-lg" ng-click="signup.register()">

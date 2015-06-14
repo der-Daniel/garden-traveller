@@ -70,7 +70,7 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
       url: '^/signup',
       views: {
         'main': {
-          controller: 'SignupController as SignupController',
+          controller: 'SignupController as signup',
           templateUrl: 'signup/signup.html'
         }
       },

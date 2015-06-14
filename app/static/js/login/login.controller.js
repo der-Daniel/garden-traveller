@@ -1,7 +1,7 @@
 var component = require('./login.module');
 
 class LoginController {
-  constructor(apiService, $state) {
+  constructor(apiService, $state, $rootScope) {
     this.user = {
       'email': '',
       'pass': ''
@@ -11,6 +11,7 @@ class LoginController {
 
     this.apiService = apiService;
     this.$state = $state;
+    this.$rootScope = $rootScope;
   }
 
   login() {
@@ -19,6 +20,7 @@ class LoginController {
       if (success.success) {
         self.warning = false;
         self.$state.go('feed');
+        self.$rootScope.$broadcast('logIn');
       } else {
         self.warning = true;
       }
