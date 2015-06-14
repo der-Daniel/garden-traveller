@@ -19,10 +19,12 @@ class apiService {
 
     this.gardenApi = $resource('http://192.168.1.117:5000/api/garden/');
     this.allGardenApi = $resource('http://192.168.1.117:5000/api/garden/all');
-    this.offeringApi = $resource('http://192.168.1.117:5000/api/offering');
+    this.offeringApi = $resource('http://192.168.1.117:5000/api/offering/:id', {id: 1});
 
-    this.locate = $resource('https://router.project-osrm.org/match:loc')
     this.routeApi = $resource('http://192.168.1.117:5000/api/route');
+    this.locateApi = $resource('https://router.project-osrm.org/match:loc');
+
+    this.addProductApi = $resource('http://192.168.1.117:5000/api/product/:name', {name: ''});
 
   }
 
@@ -36,8 +38,8 @@ class apiService {
     })
   }
 
-  readOffering() {
-    return this.offeringApi.get().$promise;
+  readOffering(id) {
+    return this.offeringApi.get({id: id}).$promise;
   }
 
   readRoute() {
@@ -45,7 +47,7 @@ class apiService {
   }
 
   addProduct(product) {
-    return this.fileApi.addProduct({path: 'api/product',product: product}).$promise;
+    return this.addProductApi.save({name: product}).$promise;
   }
 
   login(email, pass) {
@@ -61,7 +63,7 @@ class apiService {
 
 
   locate(loc) {
-    return this.locate.get({loc: loc}).$promise;
+    return this.locateApi.save({loc: loc.lat + ',' + loc.lon}).$promise;
   }
 
   getAllGarden() {

@@ -2,61 +2,44 @@ var component = require('./shopping.module');
 
 component.controller('ShoppingController', ShoppingController);
 
+var _ = require('lodash');
+
 function ShoppingController(apiService) {
     var vm = this;
 
-    loadData();
+    getAllProducts();
 
-    //Abfrage der verfügbaren Produkte
-    vm.products = [
-        {
-            product: 'apfel',
-            quantity: 10,
-            toBuy: 0
-        },
-        {
-            product: 'phy',
-            quantity: 100,
-            toBuy: 0
-        }
-    ];
 
-    vm.shoppingList = [
-        {
-            product: 'kartoffel',
-            quantity: 10,
-            toBuy: 3
-        },
-        {
-            product: 'apfelaaaaa',
-            quantity: 10,
-            toBuy: 2
-        }
-    ];
+
+
 
     vm.decrease = decrease;
     vm.increase = increase;
     vm.finish = finish;
+    vm.getAllProducts = getAllProducts;
+    vm.shoppingList = {};
 
 
-    function decrease(index) {
-        if (vm.products[index].toBuy > 0)
-            vm.products[index].toBuy -= 1;
+
+    function getAllProducts() {
+        //Abfrage der verfügbaren Produkte
+        apiService.read().then(function(products) {
+            vm.products = products.products;
+        });
     }
-    function increase(index) {
-        if (vm.products[index].toBuy < vm.products[index].quantity)
-            vm.products[index].toBuy += 1;
+
+    function decrease(product, id) {
+        _.set(vm.shoppingList, id + '.amount', _.get(vm.shoppingList, id + '.amount', 0) - 1);
+        _.set(vm.shoppingList, id + '.product', product);
+    }
+
+    function increase(product, id) {
+        _.set(vm.shoppingList, id + '.amount', _.get(vm.shoppingList, id + '.amount', 0) + 1);
+        _.set(vm.shoppingList, id + '.product', product);
     }
 
     function finish() {
 
-    }
-
-    function loadData() {
-        var promise = apiService.readOffering();
-        promise.then(function(data) {
-            console.log(data);
-        });
     }
 
 }

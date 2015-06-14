@@ -4,13 +4,13 @@ class AdminController {
   constructor(apiService) {
     var vm = this;
 
-    vm.amount;
+    this.apiService = apiService;
+
 
   }
 
-  addProduct(product) {
-    apiService.addProduct(product).then(function() {
-
+  addProduct() {
+    this.apiService.addProduct(this.product).then(function(res) {
     });
   }
 }

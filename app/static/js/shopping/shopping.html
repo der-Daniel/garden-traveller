@@ -2,28 +2,37 @@
 <section id="shopping" class="middle-section">
 <div class="container">
     
-    <h2>my list</h2>
 
-    <div ng-repeat="item in shoppingCtrl.shoppingList">
-        {{item.product}}
-        {{item.toBuy}}
-    </div>
 
-    <hr>
+
     
-    <h2>offerings</h2>  
-    <div ng-repeat="item in shoppingCtrl.products track by $index">
-        {{item.product}}
-    
-        <button class="btn btn-default" ng-click="shoppingCtrl.decrease($index)">
-            <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-        </button>
-        <input type="number" class="form-control" ng-model="item.toBuy">
-        <button class="btn btn-default" ng-click="shoppingCtrl.increase($index)">
+    <h2>available products</h2>
+
+    <ul>
+        <li ng-repeat="(id, product) in shoppingCtrl.products">
+            {{product}}
+            <button class="btn btn-default" ng-click="shoppingCtrl.decrease(product, id)">
+                <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+            </button><button class="btn btn-default" ng-click="shoppingCtrl.increase(product, id)">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </button>
-    </div>
-    
+        </li>
+
+    </ul>
+
+
+
+    <h2>my list</h2>
+
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="shopping in shoppingCtrl.shoppingList" ng-if="amount != 0">
+            {{shopping.product}}
+            <span class="badge">{{shopping.amount}}</span>
+        </li>
+    </ul>
+
+
+
     <button class="btn btn-default" ng-click="shoppingCtrl.finish()">
         Bestätigen
     </button>
