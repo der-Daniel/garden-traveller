@@ -18,6 +18,7 @@ require('./api');
 require('./signup');
 require('./shopping');
 require('./map');
+require('angular-xeditable');
 
 var requires = [
   'ngRoute',
@@ -35,7 +36,8 @@ var requires = [
   'mgcrea.ngStrap',
   'app.garden',
   'app.shopping',
-  'app.map'
+  'app.map',
+  'xeditable'
 ];
 
 angular.module('app', requires);
