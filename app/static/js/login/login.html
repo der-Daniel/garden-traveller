@@ -2,12 +2,12 @@
     <div class="container">
         <div ng-if="login.warning" class="alert alert-danger" role="alert">Wrong E-Mail or Password !</div>
         <div class="input-group input-group-lg">
-                <span class="input-group-addon"><i class="fa fa-user" ></i></span>
+                <span class="input-group-addon"><i class="fa fa-width fa-envelope-o" ></i></span>
                 <input action-on-enter="login.login()" type="text" class="form-control" placeholder="e-mail" aria-describedby="sizing-addon1" ng-model="login.user.email">
         </div>
         <br>
         <div class="input-group input-group-lg">
-            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-lock"></i></span>
+            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-width fa-lock"></i></span>
             <input action-on-enter="login.login()" type="password" class="form-control" placeholder="password" aria-describedby="sizing-addon1" ng-model="login.user.pass">
         </div>
         <br>

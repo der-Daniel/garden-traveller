@@ -1,8 +1,11 @@
-ADMIN SITE<br>
-<br>
-Produkt:<br>
-<input type="text" class="form-control" ng-model="admin.product" placeholder="Produkt"><br>
-<br>
-<br>
-<button type="submit" class="btn btn-default" ng-click="admin.addProduct(admin.product)">Submit</button>
-
+<section class="signup middle-section">
+    <div class="container">
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon"><i class="fa fa-width fa-cutlery" ></i></span>
+            <input action-on-enter="signup.register()" type="text" class="form-control" placeholder="product to add" aria-describedby="sizing-addon1" ng-model="signup.user.email">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-default" ng-click="admin.addProduct(admin.product)">
+            Submit</button>
+    </div>
+</section>
