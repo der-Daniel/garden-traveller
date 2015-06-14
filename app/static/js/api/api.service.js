@@ -28,12 +28,12 @@ class apiService {
 
     this.addProductApi = $resource('http://10.251.0.39:5000/api/product/:name', {name: ''});
 
-    this.offeringApi = $resource('http://10.251.0.39:5000/api/offering/:offer', {offer: {}});
+    this.offeringApi = $resource('http://192.168.1.117:5000/api/offering');
 
   }
 
-  offer(offer) {
-    return this.offeringApi.get({offer: offer}).$promise;
+  postShopping() {
+    return this.routeApi.save().$promise;
   }
 
   read() {
@@ -48,10 +48,6 @@ class apiService {
 
   readOffering(id) {
     return this.offeringApi.get({id: id}).$promise;
-  }
-
-  readRoute() {
-    return this.routeApi.save({}).$promise;
   }
 
   getAllGardens() {
