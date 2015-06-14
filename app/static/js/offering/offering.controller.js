@@ -7,9 +7,8 @@ class OfferingController {
     vm.amount = 0;
     vm.location = '';
 
-    apiService.read().then(function(products) {
-      console.log(products);
-      vm.product = products;
+    apiService.readAllOfferings().then(function(data) {
+      vm.offerings = data.offerings;
     });
 
 

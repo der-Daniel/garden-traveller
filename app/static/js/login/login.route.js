@@ -85,7 +85,18 @@ function Routes($stateProvider, $locationProvider, $urlRouterProvider) {
           templateUrl: 'offering/offering.html'
         }
       },
-      title: 'Signup'
+      title: 'My Offerings'
+    })
+    .state('offering/edit', {
+      parent: 'inside',
+      url: '^/offering/edit',
+      views: {
+        'main': {
+          controller: 'EditController as edit',
+          templateUrl: 'offering/edit.html'
+        }
+      },
+      title: 'My Offerings > Edit'
     })
     .state('shopping', {
       parent: 'inside',

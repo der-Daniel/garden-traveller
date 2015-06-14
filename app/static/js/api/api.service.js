@@ -20,6 +20,8 @@ class apiService {
     this.gardenApi = $resource('http://192.168.1.117:5000/api/garden/');
     this.allGardenApi = $resource('http://192.168.1.117:5000/api/garden/all');
     this.offeringApi = $resource('http://192.168.1.117:5000/api/offering/:id', {id: 1});
+    this.gardenApiAll = $resource('http://192.168.1.117:5000/api/garden/all');
+    this.offeringApiAll = $resource('http://192.168.1.117:5000/api/offering/all');
 
     this.routeApi = $resource('http://192.168.1.117:5000/api/route');
     this.locateApi = $resource('https://router.project-osrm.org/match:loc');
@@ -44,6 +46,18 @@ class apiService {
 
   readRoute() {
     return this.routeApi.save({}).$promise;
+  }
+
+  getAllGardens() {
+    return this.gardenApiAll.get().$promise;
+  }
+
+  readAllOfferings() {
+    return this.offeringApiAll.get().$promise;
+  }
+
+  saveOffering(json) {
+    return this.offeringApi.save(json);
   }
 
   addProduct(product) {
