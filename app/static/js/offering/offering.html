@@ -1,16 +1,22 @@
-<div class="container">
-    {{offering.offerings}}
+<div class="container" style="padding-top: 100px; padding-bottom: 100px;">
+    <div style="text-align: right;">
+        <button ng-click="offering.add()" class="btn btn-success">Add Offering <span class="glyphicon glyphicon-plus"></span></button>
+    </div>
     <table class="table table-striped">
         <thead>
-            <tr ng-repeat="offering in offering.offerings">
-                <th></th>
+            <tr>
+                <th>Product</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Garden</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>sdklmnslk</td>
-                <td>skjdskljlk</td>
-                <td>sdjlsjl</td>
+            <tr ng-repeat="offering_ in offering.offerings">
+                <td>{{offering_.product}}</td>
+                <td>{{offering_.amount}}</td>
+                <td>{{offering_.price}}</td>
+                <td>{{offering.gardens[offering_.gardenId].name}}</td>
             </tr>
         </tbody>
     </table>
