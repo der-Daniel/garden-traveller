@@ -1,5 +1,5 @@
 *.pyc
-*.db
+#*.db
 *venv*
 *__pycache__*
 *~

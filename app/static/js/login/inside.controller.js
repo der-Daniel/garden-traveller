@@ -2,7 +2,7 @@ var component = require('./login.module');
 
 class InsideController {
   constructor($rootScope) {
-    this.logedIn = false;
+    //this.logedIn = false;
 
     var self = this;
     this.$rootScope = $rootScope;

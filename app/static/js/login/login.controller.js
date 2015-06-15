@@ -17,9 +17,9 @@ class LoginController {
   login() {
     
     var self = this;
-        self.$state.go('feed');
+    /*    self.$state.go('feed');
         self.$rootScope.$broadcast('logIn');
-        /*
+    */
     this.apiService.login(this.user.email, this.user.pass).then(function(success) {
       if (success.success) {
         self.warning = false;
@@ -29,7 +29,7 @@ class LoginController {
         self.warning = true;
       }
     });
-    */
+
   }
 
 }
