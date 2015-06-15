@@ -17,7 +17,7 @@ cd app/static
 bower install
 npm install
 gulp (manually kill gulp when watch task is started)
-gulp (need to to this the 2nd time; manually kill gulp when watch task is started)
+gulp (need to to this a 2nd time; manually kill gulp when watch task is started)
 http-server dist
 ```
 
