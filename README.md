@@ -11,7 +11,7 @@ python3 runserver.py
 cd app/static
 bower install
 npm install
-gulp (manually kill gulp when ist starts the watch task)
+gulp (manually kill gulp when watch task is started)
 http-server dist
 ```
 
