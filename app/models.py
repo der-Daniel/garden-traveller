@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(128), unique=True, nullable=False)
     _password = db.Column(db.String(128), nullable=False)
     address = db.relationship('Address', uselist=False, backref='user')
-    gardens = db.relationship('Garden', backref=db.backref('garden', lazy='joined'), lazy='dynamic')
+    gardens = db.relationship('Garden', backref=db.backref('user', lazy='joined'), lazy='dynamic')
 
     @hybrid_property
     def password(self):

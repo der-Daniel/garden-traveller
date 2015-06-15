@@ -72,19 +72,20 @@ offeringUpdateParser.add_argument('price', type=int, help='Price')
 #                          API Functionality
 #########################################################################################
 class OfferingAll(Resource):
-    decorators = [login_required]
 
     def get(self):
-        offerings = current_user.offerings
+        gardens = models.Garden.query.all()
         data = {}
-        for offering in offerings:
-            data[offering.id] = {
-                'product': offering.product.name,
-                'amount': offering.amount,
-                'price': offering.price,
-                'productId': offering.product_id,
-                'gardenId': offering.garden_id
-            }
+        for garden in gardens:
+            print('Garden', garden)
+            for offering in garden.offerings:
+                data[offering.id] = {
+                    'product': offering.product.name,
+                    'amount': offering.amount,
+                    'price': offering.price,
+                    'productId': offering.product_id,
+                    'gardenId': offering.garden_id
+                }
         return {'success': True, 'offerings': data}
 
 
@@ -258,6 +259,12 @@ class Garden(Resource):
             location=location,
         )
 
+        user = models.User.query.get(1)
+        if user is None:
+            return {'success': False, 'message': 'No user in DB!'}
+
+        user.gardens.append(garden)
+        db.session.add(user)
         db.session.add(garden)
         db.session.commit()
         return {'success': True}
@@ -315,21 +322,22 @@ def signup():
 
 @app.route('/api/signin', methods = ['POST'])
 def signin():
-    print('SIGNIN START')
-    print(request)
-    args = loginParser.parse_args()
-    print('SIGNIN args', args)
-    email = args['email']
-    password = args['password']
-
-    user = models.User.query.filter_by(email=email).first()
-    if user is None:
-        return jsonify({'success': False, 'message': 'User not found!'})
-    if user.is_correct_password(password):
-        login_user(user)
-        return jsonify({'success': True})
-    else:
-        return jsonify({'success': False, 'message': 'Wrong email or password!'})
+    # print('SIGNIN START')
+    # print(request)
+    # args = loginParser.parse_args()
+    # print('SIGNIN args', args)
+    # email = args['email']
+    # password = args['password']
+    #
+    # user = models.User.query.filter_by(email=email).first()
+    # if user is None:
+    #     return jsonify({'success': False, 'message': 'User not found!'})
+    # if user.is_correct_password(password):
+    #     login_user(user)
+    #     return jsonify({'success': True})
+    # else:
+    #     return jsonify({'success': False, 'message': 'Wrong email or password!'})
+    return jsonify({'success': True})
 
 
 @app.route('/api/signout')
@@ -339,7 +347,7 @@ def signout():
     return jsonify({'success': True})
 
 
-@app.route('/admin/users')
+@app.route('/api/admin/users')
 def adminUsers():
     users = models.User.query.all()
     result = {}
@@ -351,7 +359,14 @@ def adminUsers():
             'password': user.password,
             'street': user.address.street,
             'city': user.address.city,
+            'gardens': []
         }
+        for garden in user.gardens:
+            obj = {
+                'id': garden.id,
+                'name': garden.name
+            }
+            userData['gardens'].append(obj)
         result[user.id] = userData
     return jsonify(result)
 
