@@ -1,3 +1,4 @@
 static/node_modules
 dist
 templatecache.js
+static/bower_components
