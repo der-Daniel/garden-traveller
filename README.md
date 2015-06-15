@@ -1,8 +1,6 @@
-# bep
-#hackDA15
-
-# Garden Traveler
-
+# garden traveller
+ #hackDA15
+ 
 Campus Hackathon Darmstadt project
 http://slides.com/derdaniel/deck#/
 
