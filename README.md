@@ -1,8 +1,10 @@
+![garden traveller](http://i.imgur.com/aIXFRcx.png)
+
 # garden traveller
  #hackDA15
  
-Campus Hackathon Darmstadt project
-http://slides.com/derdaniel/deck#/
+Campus Hackathon - Darmstadt  
+https://slides.com/derdaniel/garden-traveller/
 
 ## Install
 
